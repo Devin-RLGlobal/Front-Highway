@@ -3,9 +3,10 @@ let myContext = null
 
 export async function moveEmail() {
     console.log('moveEmail function called!');
+    console.log(myContext.conversation)
     if (typeof Front !== 'undefined' && Front.context) {
         try {
-            const context = Front.context;
+            const context = myContext
             if (context.type === 'singleConversation') {
                 const conversationId = context.conversation.id;
 
