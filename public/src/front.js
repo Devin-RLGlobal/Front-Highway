@@ -6,13 +6,12 @@ export async function moveEmail() {
     console.log(myContext.conversation)
     if (typeof Front !== 'undefined' && Front.context) {
         try {
-            const context = myContext
-            if (context.type === 'singleConversation') {
-                const conversationId = context.conversation.id;
+            if (myContext.type === 'singleConversation') {
+                const conversationId = myContext.conversation.id;
 
-                const targetInboxId = '23789980';
+                const targetInboxId = 'inb_e5wgs';
 
-                await context.move(targetInboxId)
+                await myContext.move(targetInboxId)
                 console.log(`Conversation ${conversationId} moved to inbox ${targetInboxId}`);
             } else {
                 console.warn('No single conversation selected or invalid context type.');
