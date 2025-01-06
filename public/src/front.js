@@ -1,5 +1,32 @@
 const { Front } = window;
 
+export async function moveEmail() {
+    console.log('moveEmail function called!');
+    
+    if (typeof Front !== 'undefined' && Front.context) {
+        try {
+            const context = await Front.getContext(); 
+            if (context.type === 'singleConversation') {
+                const conversationId = context.conversation.id;
+
+                const targetInboxId = 'target';
+
+                await Front.apiRequest({
+                    method: 'PUT',
+                    path: `/conversations/${conversationId}/inbox`,
+                    data: { inbox_id: targetInboxId }
+                });
+                console.log(`Conversation ${conversationId} moved to inbox ${targetInboxId}`);
+            } else {
+                console.warn('No single conversation selected or invalid context type.');
+            }
+        } catch (error) {
+            console.error('Error moving email:', error);
+        }
+    } else {
+        console.warn('Front SDK not available - Cannot move email.');
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log(Front);
@@ -10,8 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('No conversation selected');
                 break;
               case 'singleConversation':
-                console.log('Selected conversation:');
-                console.log(context.conversation)
+                console.log('Selected conversation:', context.conversation);
                 break;
               case 'multiConversations':
                 console.log('Multiple conversations selected', context.conversations);
@@ -27,8 +53,3 @@ document.addEventListener('DOMContentLoaded', function () {
         'Subject: Test Email (Local)';
     }
 });
-
-export function moveEmail() {
-    console.log('moveEmail function called!');
-    Front.moveToInbox('contact');
-}
