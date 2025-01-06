@@ -3,7 +3,7 @@ let myContext = null
 
 export async function moveEmail() {
     console.log('moveEmail function called!');
-    
+    myContext = null
     if (typeof Front !== 'undefined' && Front.context) {
         try {
             const context = Front.context;
@@ -27,6 +27,7 @@ export async function moveEmail() {
     } else {
         console.warn('Front SDK not available - Cannot move email.');
     }
+    console.log(myContext)
 }
 
 document.addEventListener('DOMContentLoaded', function () {
