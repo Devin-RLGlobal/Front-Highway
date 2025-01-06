@@ -10,7 +10,18 @@
 <body>
   <h1>Front Plugin</h1>
   <p id="email-subject">Loading email context...</p>
+  
+  <!-- Add a button that triggers the moveEmail() function -->
+  <button id="move-email-btn">Move Email</button>
 
   <script src="../src/front.js" type="module"></script>
+  <script type="module">
+    import { moveEmail } from '../src/front.js';
+
+    // Attach the moveEmail function to the button click event
+    document.getElementById('move-email-btn').addEventListener('click', () => {
+      moveEmail(); // Call the function from front.js
+    });
+  </script>
 </body>
 </html>

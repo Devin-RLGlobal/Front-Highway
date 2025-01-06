@@ -1,7 +1,8 @@
 const { Front } = window;
 
+
 document.addEventListener('DOMContentLoaded', function () {
-    console.log(Front)
+    console.log(Front);
     if (typeof Front !== 'undefined' && Front.context) {
         Front.contextUpdates.subscribe(context => {
             switch(context.type) {
@@ -9,7 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('No conversation selected');
                 break;
               case 'singleConversation':
-                console.log('Selected conversation:', context.conversation);
+                console.log('Selected conversation:');
+                for(let i in context.conversation){
+                    console.log(i)
+                }
                 break;
               case 'multiConversations':
                 console.log('Multiple conversations selected', context.conversations);
@@ -24,5 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('email-subject').innerText =
         'Subject: Test Email (Local)';
     }
-  });
-  
+});
+
+export function moveEmail() {
+    console.log('moveEmail function called!');
+}
