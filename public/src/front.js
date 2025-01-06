@@ -1,12 +1,12 @@
 const { Front } = window;
-
+let myContext = null
 
 export async function moveEmail() {
     console.log('moveEmail function called!');
     
     if (typeof Front !== 'undefined' && Front.context) {
         try {
-            const context = await Front.context;
+            const context = Front.context;
             if (context.type === 'singleConversation') {
                 const conversationId = context.conversation.id;
 
@@ -39,9 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
               case 'singleConversation':
                 console.log('Selected conversation:', context.conversation);
+                myContext = context
                 break;
               case 'multiConversations':
                 console.log('Multiple conversations selected', context.conversations);
+                myContext = context
                 break;
               default:
                 console.error(`Unsupported context type: ${context.type}`);
