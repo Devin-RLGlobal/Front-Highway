@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
               case 'singleConversation':
                 console.log('Selected conversation:');
+                console.log(context.conversation)
                 for(let i in context.conversation){
                     console.log(i)
                 }
