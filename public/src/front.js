@@ -1,15 +1,16 @@
 const { Front } = window;
 
+
 export async function moveEmail() {
     console.log('moveEmail function called!');
     
     if (typeof Front !== 'undefined' && Front.context) {
         try {
-            const context = await Front.getContext(); 
+            const context = await Front.context;
             if (context.type === 'singleConversation') {
                 const conversationId = context.conversation.id;
 
-                const targetInboxId = 'target';
+                const targetInboxId = 'test';
 
                 await Front.apiRequest({
                     method: 'PUT',
