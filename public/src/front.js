@@ -25,8 +25,8 @@ async function fetchAlerts() {
 
 export async function moveEmail() {
     console.log(myContext.conversation)
-    contextEmail = myContext.conversation.recipient.handle
-    console.log(myContext.conversation.recipient.handle)
+    let contextEmail = myContext.conversation.recipient.handle
+    console.log(contextEmail)
     console.log('moveEmail function called!');
     if (typeof Front !== 'undefined' && Front.context) {
         try {
