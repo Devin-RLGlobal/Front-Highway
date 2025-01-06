@@ -10,7 +10,7 @@ export async function moveEmail() {
             if (context.type === 'singleConversation') {
                 const conversationId = context.conversation.id;
 
-                const targetInboxId = 'test';
+                const targetInboxId = '23789980';
 
                 await context.move(targetInboxId)
                 console.log(`Conversation ${conversationId} moved to inbox ${targetInboxId}`);
