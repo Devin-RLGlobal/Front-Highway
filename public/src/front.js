@@ -1,22 +1,27 @@
 const { Front } = window;
-let myContext = null
+let myContext = null;
 
 export async function moveEmail() {
     console.log('moveEmail function called!');
-    console.log(myContext.conversation)
+    console.log(myContext.conversation);
     if (typeof Front !== 'undefined' && Front.context) {
         try {
-            const context = myContext
+            const context = myContext;
             if (context.type === 'singleConversation') {
                 const conversationId = context.conversation.id;
 
                 const targetInboxId = 'test';
 
-                await Front.apiRequest({
+                // Use Front API's plugin SDK method instead of apiRequest
+                await Front.httpRequest({
                     method: 'PUT',
                     path: `/conversations/${conversationId}/inbox`,
-                    data: { inbox_id: targetInboxId }
+                    body: JSON.stringify({ inbox_id: targetInboxId }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 });
+
                 console.log(`Conversation ${conversationId} moved to inbox ${targetInboxId}`);
             } else {
                 console.warn('No single conversation selected or invalid context type.');
@@ -27,7 +32,7 @@ export async function moveEmail() {
     } else {
         console.warn('Front SDK not available - Cannot move email.');
     }
-    console.log(myContext)
+    console.log(myContext);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -40,11 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
               case 'singleConversation':
                 console.log('Selected conversation:', context.conversation);
-                myContext = context
+                myContext = context;
                 break;
               case 'multiConversations':
                 console.log('Multiple conversations selected', context.conversations);
-                myContext = context
+                myContext = context;
                 break;
               default:
                 console.error(`Unsupported context type: ${context.type}`);
