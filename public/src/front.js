@@ -30,4 +30,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 export function moveEmail() {
     console.log('moveEmail function called!');
+    Front.moveToInbox('contact');
 }
