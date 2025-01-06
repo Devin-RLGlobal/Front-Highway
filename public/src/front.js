@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
               case 'singleConversation':
                 console.log('Selected conversation:');
                 console.log(context.conversation)
-                for(let i in context.conversation){
-                    console.log(i)
-                }
                 break;
               case 'multiConversations':
                 console.log('Multiple conversations selected', context.conversations);
