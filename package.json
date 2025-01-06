@@ -1,0 +1,19 @@
+{
+  "name": "front-plugin",
+  "version": "1.0.0",
+  "description": "A Front plugin to get the context of the current email.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@frontapp/plugin-sdk": "^1.8.1",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
