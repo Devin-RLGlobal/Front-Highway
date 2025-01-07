@@ -37,10 +37,8 @@ app.post('/email', async (req, res) => {
   console.log('Request Body:', req.body);
 
   try {
-    // Extract email, MC, and DOT numbers from the request body
     const { email, mc = [], dot = [] } = req.body;
 
-    // Email Search Config
     let data1 = qs.stringify({ 'email': email || 'test@gmail.com' });
 
     let config1 = {
@@ -53,7 +51,6 @@ app.post('/email', async (req, res) => {
       data: data1
     };
 
-    // Create configs dynamically for each MC and DOT
     const dotConfigs = dot.map((dotNumber) => ({
       method: 'get',
       maxBodyLength: Infinity,
@@ -72,25 +69,21 @@ app.post('/email', async (req, res) => {
       }
     }));
 
-    // Execute all requests in parallel
     const [emailResponse, ...otherResponses] = await Promise.all([
       axios.request(config1),
-      ...dotConfigs.map(config => axios.request(config)), // Process all DOT requests
-      ...mcConfigs.map(config => axios.request(config))   // Process all MC requests
+      ...dotConfigs.map(config => axios.request(config)), 
+      ...mcConfigs.map(config => axios.request(config)) 
     ]);
 
-    // Separate DOT and MC responses
-    const dotResponses = otherResponses.slice(0, dotConfigs.length); // First N are DOT
-    const mcResponses = otherResponses.slice(dotConfigs.length);     // Remaining are MC
+    const dotResponses = otherResponses.slice(0, dotConfigs.length);
+    const mcResponses = otherResponses.slice(dotConfigs.length);
 
-    // Format combined data
     const combinedData = {
       emailSearch: emailResponse.data,
-      dotSearch: dotResponses.map(res => res.data), // Map DOT responses
-      mcSearch: mcResponses.map(res => res.data)    // Map MC responses
+      dotSearch: dotResponses.map(res => res.data),
+      mcSearch: mcResponses.map(res => res.data) 
     };
 
-    // Send response
     res.status(200).json(combinedData);
 
   } catch (error) {
@@ -98,7 +91,6 @@ app.post('/email', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
