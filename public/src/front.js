@@ -26,8 +26,8 @@ async function getNumbers() {
         
         for (let result of data["results"]) {
             let body = result["content"]["body"];
-            mcNums.push(searchMCNumbers(body));
-            dotNums.push(searchDOTNumbers(body));
+            mcNums.push(...searchMCNumbers(body));
+            dotNums.push(...searchDOTNumbers(body));
         }
 
         let contextEmail = myContext.conversation.recipient.handle;
