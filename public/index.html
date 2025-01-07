@@ -15,28 +15,34 @@
   <script type="module">
     import { moveEmail } from '../src/front.js';
     window.addEventListener('highwayDataUpdated', (event) => {
-      const data = event.detail;
-      const filteredData = {
-    Title: data.dotSearch.legal_name,
-    Description: data.dotSearch.authority_assessment.rating,
-    OverallResult: data.dotSearch.rules_assessment.overall_result,
-    SafetyRating: data.dotSearch.safety.safety_rating,
-    ContractStatus: data.dotSearch.authority.authorities.contract_authority_status || "N/A",
-    CommonStatus: data.dotSearch.authority.authorities.common_authority_status || "N/A",
-    BrokerStatus: data.dotSearch.authority.authorities.broker_authority_status || "N/A",
-    ConnectionStatus: data.dotSearch.connection || "N/A",
-    CarrierID: data.dotSearch.dot_number,
-    LegalName: data.dotSearch.legal_name,
-    MCNumber: data.dotSearch.mc_number,
-    DOTNumber: data.dotSearch.dot_number,
-    Address: `${data.dotSearch.addresses[0].street1}, ${data.dotSearch.addresses[0].city}, ${data.dotSearch.addresses[0].state} ${data.dotSearch.addresses[0].postal_code}`,
-    DispatchPhone: data.dotSearch.contact_information.dispatch_contact.phone,
-    DispatchEmail: data.dotSearch.contact_information.dispatch_contact.email_address
+  // Ensure dotSearch exists and access the first item safely
+  const data = event.detail?.dotSearch?.[0]?.[0] || {}; // Use dotSearch as the root
+
+  // Filtered data mapped to the fields in the image
+  const filteredData = {
+    Title: data.legal_name ?? "N/A",
+    Description: data.authority_assessment?.rating ?? "N/A",
+    OverallResult: data.rules_assessment?.overall_result ?? "N/A",
+    SafetyRating: data.safety?.safety_rating ?? "N/A",
+    ContractStatus: data.authority?.authorities?.contract_authority_status ?? "N/A",
+    CommonStatus: data.authority?.authorities?.common_authority_status ?? "N/A",
+    BrokerStatus: data.authority?.authorities?.broker_authority_status ?? "N/A",
+    ConnectionStatus: data.connection ?? "N/A",
+    CarrierID: data.dot_number ?? "N/A",
+    LegalName: data.legal_name ?? "N/A",
+    MCNumber: data.mc_number ?? "N/A",
+    DOTNumber: data.dot_number ?? "N/A",
+    Address: `${data.addresses?.[0]?.street1 ?? "N/A"}, ${data.addresses?.[0]?.city ?? "N/A"}, ${data.addresses?.[0]?.state ?? "N/A"} ${data.addresses?.[0]?.postal_code ?? "N/A"}`,
+    DispatchPhone: data.contact_information?.dispatch_contact?.phone ?? "N/A",
+    DispatchEmail: data.contact_information?.dispatch_contact?.email_address ?? "N/A"
   };
 
-    const container = document.getElementById('highway-data');
-    container.innerHTML = `<pre>${JSON.stringify(filteredData, null, 2)}</pre>`;
-    });
+  // Display filtered data in the UI
+  const container = document.getElementById('highway-data');
+  container.innerHTML = `<pre>${JSON.stringify(filteredData, null, 2)}</pre>`;
+});
+
+
 
     document.getElementById('move-email-btn').addEventListener('click', () => {
       moveEmail();
