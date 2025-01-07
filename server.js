@@ -34,7 +34,7 @@ app.post('/webhook', (req, res) => {
 
 
 app.post('/email', async (req, res) => {
-  console.log(req)
+  console.log('Request Body:', req.body);
   try {
     let data1 = qs.stringify({
       'email': 'test@gmail.com'
