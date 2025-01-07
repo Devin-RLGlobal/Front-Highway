@@ -21,6 +21,8 @@ export async function moveEmail() {
     let contextEmail = myContext.conversation.recipient.handle
     console.log(contextEmail)
     console.log('moveEmail function called!');
+    fetchAlerts();
+
     if (typeof Front !== 'undefined' && Front.context) {
         try {
             if (myContext.type === 'singleConversation') {
@@ -43,7 +45,6 @@ export async function moveEmail() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetchAlerts();
     if (typeof Front !== 'undefined' && Front.context) {
         Front.contextUpdates.subscribe(context => {
             switch(context.type) {

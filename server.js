@@ -55,7 +55,6 @@ app.get('/api/alerts', async (req, res) => {
       res.json(response.data);
   
     } catch (error) {
-      // Log full error details
       console.error('Error fetching alerts:', error.message);
       console.error('Response Data:', error.response?.data || 'No response data');
   
@@ -69,6 +68,5 @@ app.get('/api/alerts', async (req, res) => {
   
   module.exports = router;  
 });
-// Listen on the port provided by Glitch or default to 3000 locally
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
