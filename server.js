@@ -31,21 +31,21 @@ app.post('/webhook', (req, res) => {
 });
 
 app.get('/api/alerts', async (req, res) => {
-  try {
-    const response = await axios.get('https://staging.highway.com/core/connect/external_api/v1/alerts', {
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
-      }
-    });
-
-    // Return the data from Highway API to the frontend
-    res.json(response.data);
-
-  } catch (error) {
-    console.error('Error fetching alerts:', error.message);
-    res.status(500).json({ error: 'Failed to fetch alerts' });
-  }
+  const url = 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers';
+  const options = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      Authorization: 'Bearer ' + process.env.HIGHWAYAPIKEY
+    },
+    body: JSON.stringify({email: 'test@example.com'})
+  };
+  
+  fetch(url, options)
+    .then(res => res.json())
+    .then(json => console.log(json))
+    .catch(err => console.error(err));
 });
 // Listen on the port provided by Glitch or default to 3000 locally
 const PORT = process.env.PORT || 3000;
