@@ -35,10 +35,13 @@ app.post('/webhook', (req, res) => {
 
 app.post('/email', async (req, res) => {
   console.log('Request Body:', req.body);
+
   try {
-    let data1 = qs.stringify({
-      'email': 'test@gmail.com'
-    });
+    // Extract email, MC, and DOT numbers from the request body
+    const { email, mc = [], dot = [] } = req.body;
+
+    // Email Search Config
+    let data1 = qs.stringify({ 'email': email || 'test@gmail.com' });
 
     let config1 = {
       method: 'post',
@@ -50,36 +53,44 @@ app.post('/email', async (req, res) => {
       data: data1
     };
 
-    let config2 = {
+    // Create configs dynamically for each MC and DOT
+    const dotConfigs = dot.map((dotNumber) => ({
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=02478571&q[identifiers_is_type_eq]=DOT',
+      url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`,
       headers: { 
         'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
       }
-    };
+    }));
 
-    let config3 = {
+    const mcConfigs = mc.map((mcNumber) => ({
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=585644&q[identifiers_is_type_eq]=MC',
+      url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`,
       headers: { 
         'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
       }
-    };
+    }));
 
-    const [response1, response2, response3] = await Promise.all([
+    // Execute all requests in parallel
+    const [emailResponse, ...otherResponses] = await Promise.all([
       axios.request(config1),
-      axios.request(config2),
-      axios.request(config3)
+      ...dotConfigs.map(config => axios.request(config)), // Process all DOT requests
+      ...mcConfigs.map(config => axios.request(config))   // Process all MC requests
     ]);
 
+    // Separate DOT and MC responses
+    const dotResponses = otherResponses.slice(0, dotConfigs.length); // First N are DOT
+    const mcResponses = otherResponses.slice(dotConfigs.length);     // Remaining are MC
+
+    // Format combined data
     const combinedData = {
-      emailSearch: response1.data,
-      dotSearch: response2.data,
-      mcSearch: response3.data
+      emailSearch: emailResponse.data,
+      dotSearch: dotResponses.map(res => res.data), // Map DOT responses
+      mcSearch: mcResponses.map(res => res.data)    // Map MC responses
     };
 
+    // Send response
     res.status(200).json(combinedData);
 
   } catch (error) {
@@ -87,7 +98,6 @@ app.post('/email', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
-
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
 const PORT = process.env.PORT || 3000;
