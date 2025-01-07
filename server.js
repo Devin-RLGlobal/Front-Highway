@@ -32,17 +32,16 @@ app.post('/webhook', (req, res) => {
   res.status(200).send('Webhook received!');
 });
 
+
+
 app.post('/email', async (req, res) => {
-  console.log('Request Body:', req.body); 
+  console.log('Request Body:', req.body);
 
   try {
     const { email, mc = [], dot = [] } = req.body;
 
-    const cleanMC = mc.map(num => num.replace(/MC/i, '').trim()); 
-    const cleanDOT = dot.map(num => num.replace(/DOT/i, '').trim()); 
-
-    console.log('Clean MC Numbers:', cleanMC);
-    console.log('Clean DOT Numbers:', cleanDOT); 
+    const cleanMC = mc.map(num => num.replace(/MC/i, '').trim());
+    const cleanDOT = dot.map(num => num.replace(/DOT/i, '').trim());
 
     let data1 = qs.stringify({ 'email': email || 'test@gmail.com' });
 
@@ -56,28 +55,36 @@ app.post('/email', async (req, res) => {
       data: data1
     };
 
-    const dotConfigs = cleanDOT.map(dotNumber => ({
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`,
-      headers: { 
-        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
-      }
-    }));
+    const dotConfigs = cleanDOT.map(dotNumber => {
+      const url = `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`;
+      console.log('DOT URL:', url);
+      return {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: url,
+        headers: { 
+          'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
+        }
+      };
+    });
 
-    const mcConfigs = cleanMC.map(mcNumber => ({
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`,
-      headers: { 
-        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
-      }
-    }));
+    const mcConfigs = cleanMC.map(mcNumber => {
+      const url = `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`;
+      console.log('MC URL:', url);
+      return {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: url,
+        headers: { 
+          'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
+        }
+      };
+    });
 
     const [emailResponse, ...otherResponses] = await Promise.all([
       axios.request(config1),
-      ...dotConfigs.map(config => axios.request(config)), 
-      ...mcConfigs.map(config => axios.request(config)) 
+      ...dotConfigs.map(config => axios.request(config)),
+      ...mcConfigs.map(config => axios.request(config))
     ]);
 
     const dotResponses = otherResponses.slice(0, dotConfigs.length);
@@ -86,7 +93,7 @@ app.post('/email', async (req, res) => {
     const combinedData = {
       emailSearch: emailResponse.data,
       dotSearch: dotResponses.map(res => res.data),
-      mcSearch: mcResponses.map(res => res.data) 
+      mcSearch: mcResponses.map(res => res.data)
     };
 
     res.status(200).json(combinedData);
@@ -96,6 +103,7 @@ app.post('/email', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
