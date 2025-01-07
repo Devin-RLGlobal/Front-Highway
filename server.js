@@ -43,7 +43,7 @@ app.get('/email', async (req, res) => {
     url: 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers',
     headers: { 
       'Content-Type': 'application/x-www-form-urlencoded', 
-      'Authorization': 'Bearer' + process.env.HIGHWAYAPIKEY, 
+      'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY, 
     },
     data : data
   };
