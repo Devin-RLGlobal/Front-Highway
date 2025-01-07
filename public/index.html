@@ -15,10 +15,11 @@
   <script type="module">
     import { moveEmail } from '../src/front.js';
     window.addEventListener('highwayDataUpdated', (event) => {
-  // Ensure dotSearch exists and access the first item safely
-  const data = event.detail?.dotSearch?.[0]?.[0] || {}; // Use dotSearch as the root
+  const data = event.detail?.dotSearch?.[0]?.[0] || {}; 
 
-  // Filtered data mapped to the fields in the image
+  window.addEventListener('highwayDataUpdated', (event) => {
+  const data = event.detail?.dotSearch?.[0]?.[0] || {}; 
+
   const filteredData = {
     Title: data.legal_name ?? "N/A",
     Description: data.authority_assessment?.rating ?? "N/A",
@@ -37,10 +38,16 @@
     DispatchEmail: data.contact_information?.dispatch_contact?.email_address ?? "N/A"
   };
 
-  // Display filtered data in the UI
+  let plainText = '';
+  for (const [key, value] of Object.entries(filteredData)) {
+    plainText += `${key}: ${value}\n`;
+  }
+
+  // Display as plain text
   const container = document.getElementById('highway-data');
-  container.innerHTML = `<pre>${JSON.stringify(filteredData, null, 2)}</pre>`;
+  container.innerText = plainText; // Use innerText instead of innerHTML
 });
+
 
 
 
