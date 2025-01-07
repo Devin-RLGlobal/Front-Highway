@@ -56,7 +56,7 @@ async function fetchHighway() {
         }
 
         const data = await response.json(); 
-        console.log("Highway Data" + data)
+        console.log("Highway Data", data)
     } catch (error) {
         console.error('Error fetching alerts:', error);
     }
