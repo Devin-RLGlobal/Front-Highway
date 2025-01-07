@@ -7,31 +7,25 @@ const qs = require('qs');
 
 const app = express();
 
-// Middleware to parse JSON body
 app.use(bodyParser.json());
 
-// Setup Handlebars
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/src/pages');
 
-// Serve static files
 app.use(express.static('public'));
 
-// Test Home Page
 app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
 });
 
-// Webhook Route
 app.post('/webhook', (req, res) => {
   console.log('Webhook hit at:', new Date().toISOString());
   console.log('Payload:', req.body);
 
   res.status(200).send('Webhook received!');
 });
-
 
 
 app.post('/email', async (req, res) => {

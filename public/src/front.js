@@ -39,8 +39,8 @@ async function getNumbers() {
 }
 
 
-async function fetchHighway() {
-    let reqData = await getNumbers(); // Fetch the data
+export async function fetchHighway() {
+    let reqData = await getNumbers(); 
 
     try {
         const response = await fetch('/email', {
@@ -55,13 +55,17 @@ async function fetchHighway() {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const data = await response.json(); 
-        console.log("Highway Data", data)
+        const data = await response.json();
+
+        const event = new CustomEvent('highwayDataUpdated', { detail: data });
+        window.dispatchEvent(event); 
+
+        return data; 
     } catch (error) {
         console.error('Error fetching alerts:', error);
+        throw error; 
     }
 }
-
 
 
 export async function moveEmail() {

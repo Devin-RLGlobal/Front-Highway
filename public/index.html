@@ -10,15 +10,21 @@
 <body>
   <h1>Front Plugin</h1>  
   <button id="move-email-btn">Quarantine Email</button>
-
+  <div id="highway-data"></div>
   <script src="../src/front.js" type="module"></script>
   <script type="module">
     import { moveEmail } from '../src/front.js';
-
-    // Attach the moveEmail function to the button click event
-    document.getElementById('move-email-btn').addEventListener('click', () => {
-      moveEmail(); // Call the function from front.js
+    window.addEventListener('highwayDataUpdated', (event) => {
+      const data = event.detail;
+      console.log(data)
+      const container = document.getElementById('highway-data');
+      container.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
     });
+
+    document.getElementById('move-email-btn').addEventListener('click', () => {
+      moveEmail();
+    });
+
   </script>
 </body>
 </html>
