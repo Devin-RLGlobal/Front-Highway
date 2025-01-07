@@ -17,7 +17,9 @@
     window.addEventListener('highwayDataUpdated', (event) => {
       const data = event.detail;
       const filteredData = {
-      email: data.emailSearch
+      email: data.emailSearch.email_search_result_category,
+      email2: data.emailSearch.email_search_result_category,
+      dot1: data.dotnums
     };
 
     const container = document.getElementById('highway-data');
