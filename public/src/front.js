@@ -17,10 +17,10 @@ function searchDOTNumbers(body) {
     return matches || [];
 }
 
-function getNumbers(){
+async function getNumbers(){
     let mcNums = []
     let dotNums = []
-    myContext.listMessages().then((data) => {
+    await myContext.listMessages().then((data) => {
         for (let i in data["results"]){
             let body = data["results"][i]["content"]["body"]
             mcNums.push(searchMCNumbers(body))
