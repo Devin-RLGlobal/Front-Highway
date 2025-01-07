@@ -26,26 +26,29 @@ app.post('/webhook', (req, res) => {
   console.log('Webhook hit at:', new Date().toISOString());
   console.log('Payload:', req.body);
 
-  // Respond with success
   res.status(200).send('Webhook received!');
 });
 
 app.get('/api/alerts', async (req, res) => {
-  const url = 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers';
-  const options = {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      Authorization: 'Bearer ' + process.env.HIGHWAYAPIKEY
-    },
-    body: JSON.stringify({email: 'test@example.com'})
-  };
-  
-  fetch(url, options)
-    .then(res => res.json())
-    .then(json => console.log(json))
-    .catch(err => console.error(err));
+  try {
+    const response = await axios.get('https://staging.highway.com/core/connect/external_api/v1/alerts', {
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
+      }
+    });
+
+    res.json(response.data); 
+  } catch (error) {
+    console.error('Error fetching alerts:', error.message);
+
+    console.error('Full error details:', error.response ? error.response.data : error);
+
+    res.status(500).json({
+      error: 'Failed to fetch alerts',
+      details: error.response ? error.response.data : 'No response from server'
+    });
+  }
 });
 // Listen on the port provided by Glitch or default to 3000 locally
 const PORT = process.env.PORT || 3000;
