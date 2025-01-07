@@ -31,7 +31,6 @@ function getNumbers(){
 
 async function fetchHighway() {
     await getNumbers()
-    return
           try {
         const response = await fetch('/email');
         if (!response.ok) {
