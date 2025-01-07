@@ -12,7 +12,8 @@
     "body-parser": "*",
     "dotenv": "*",
     "express": "*",
-    "express-handlebars": "*"
+    "express-handlebars": "*",
+    "qs": "*"
   },
   "engines": {
     "node": "14.x"
