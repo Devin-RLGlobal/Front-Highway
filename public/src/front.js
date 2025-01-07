@@ -58,15 +58,15 @@ export async function moveEmail() {
 
 document.addEventListener('DOMContentLoaded', function () {
     if (typeof Front !== 'undefined' && Front.context) {
-        Front.contextUpdates.subscribe(context => {
+        Front.contextUpdates.subscribe(async context => {
             switch(context.type) {
               case 'noConversation':
                 console.log('No conversation selected');
                 break;
               case 'singleConversation':
                 console.log('Selected conversation:', context.conversation);
-                await fetchEmail();
                 myContext = context
+                await fetchEmail();
                 break;
               case 'multiConversations':
                 console.log('Multiple conversations selected', context.conversations);
