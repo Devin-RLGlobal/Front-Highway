@@ -32,7 +32,7 @@ app.post('/webhook', (req, res) => {
 });
 
 app.get('/email', async (req, res) => {
-  const url = 'https://staging.highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers';
+  const url = 'https://https://staging.gohighway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers';
   
   const options = {
     method: 'POST',

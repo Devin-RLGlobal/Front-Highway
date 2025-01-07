@@ -31,7 +31,7 @@ function getNumbers(){
 
 async function fetchHighway() {
     await getNumbers()
-          try {
+    try {
         const response = await fetch('/email');
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
