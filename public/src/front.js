@@ -47,10 +47,8 @@ async function fetchHighway() {
 
 
 export async function moveEmail() {
-    console.log(myContext.conversation)
     let contextEmail = myContext.conversation.recipient.handle
     console.log(contextEmail)
-    console.log('moveEmail function called!');
 
     if (typeof Front !== 'undefined' && Front.context) {
         try {
@@ -70,7 +68,6 @@ export async function moveEmail() {
     } else {
         console.warn('Front SDK not available - Cannot move email.');
     }
-    console.log(myContext)
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -81,12 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('No conversation selected');
                 break;
               case 'singleConversation':
-                console.log('Selected conversation:', context.conversation);
                 myContext = context
                 await fetchHighway();
                 break;
               case 'multiConversations':
-                console.log('Multiple conversations selected', context.conversations);
                 myContext = context
                 break;
               default:
