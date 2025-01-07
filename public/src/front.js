@@ -21,8 +21,8 @@ function getNumbers(){
     myContext.listMessages().then((data) => {
         for (let i in data["results"]){
             let body = data["results"][i]["content"]["body"]
-            searchMCNumbers(body)
-            searchDOTNumbers(body)
+            console.log(searchMCNumbers(body))
+            console.log(searchDOTNumbers(body))
         }
       }).catch((error) => {
         console.error(error); // Handles any errors
@@ -31,6 +31,7 @@ function getNumbers(){
 
 async function fetchEmail() {
     await getNumbers()
+    return
           try {
         const response = await fetch('/email');
         if (!response.ok) {
