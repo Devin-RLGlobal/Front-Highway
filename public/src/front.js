@@ -25,11 +25,11 @@ function getNumbers(){
             console.log(searchDOTNumbers(body))
         }
       }).catch((error) => {
-        console.error(error); // Handles any errors
+        console.error(error);
       });
 }
 
-async function fetchEmail() {
+async function fetchHighway() {
     await getNumbers()
     return
           try {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
               case 'singleConversation':
                 console.log('Selected conversation:', context.conversation);
                 myContext = context
-                await fetchEmail();
+                await fetchHighway();
                 break;
               case 'multiConversations':
                 console.log('Multiple conversations selected', context.conversations);
