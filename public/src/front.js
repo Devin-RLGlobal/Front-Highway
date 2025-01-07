@@ -1,26 +1,36 @@
 const { Front } = window;
 let myContext = null
 
-function getMCNumbers(){
+function searchMCNumbers(body) {
+    const regex = /MC\d+/g;
+
+    const matches = body.match(regex);
+
+    return matches || [];
+}
+
+function searchDOTNumbers(body) {
+    const regex = /DOT\d+/g;
+
+    const matches = body.match(regex);
+    
+    return matches || [];
+}
+
+function getNumbers(){
     myContext.listMessages().then((data) => {
         for (let i in data["results"]){
-            console.log(data["results"][i]["content"]["body"])
+            let body = data["results"][i]["content"]["body"]
+            searchMCNumbers(body)
+            searchDOTNumbers(body)
         }
       }).catch((error) => {
         console.error(error); // Handles any errors
       });
 }
 
-function getDOTNumbers(){
-    myContext.listMessages().then((data) => {
-        console.log(data); // Prints the data to the console
-      }).catch((error) => {
-        console.error(error); // Handles any errors
-      });
-}
-
 async function fetchEmail() {
-    await getMCNumbers()
+    await getNumbers()
           try {
         const response = await fetch('/email');
         if (!response.ok) {
