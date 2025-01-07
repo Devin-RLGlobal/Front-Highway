@@ -1,6 +1,8 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const axios = require('axios');
+require('dotenv').config();
 
 const app = express();
 
@@ -30,43 +32,31 @@ app.post('/webhook', (req, res) => {
 });
 
 app.get('/api/alerts', async (req, res) => {
-  const express = require('express');
-  const axios = require('axios');
-  const router = express.Router();
-  require('dotenv').config();
+  const url = 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers';
   
-  router.post('/alerts', async (req, res) => {
-    try {
-      const { email } = req.body;
-      if (!email || typeof email !== 'string') {
-        return res.status(400).json({ error: 'Invalid email address' });
-      }
-  
-      const url = 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers';
-  
-      const headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.HIGHWAYAPIKEY}`,
-      };
-  
-      const response = await axios.post(url, { email }, { headers });
-  
-      res.json(response.data);
-  
-    } catch (error) {
-      console.error('Error fetching alerts:', error.message);
-      console.error('Response Data:', error.response?.data || 'No response data');
-  
-      // Send appropriate error response
-      res.status(error.response?.status || 500).json({
-        error: 'Failed to fetch alerts',
-        details: error.response?.data || 'Internal Server Error',
-      });
+  const options = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      Authorization: 'Bearer ' + process.env.HIGHWAYAPITOKEN
+    },
+    data: {
+      email: 'test@example.com'
     }
-  });
-  
-  module.exports = router;  
+  };
+
+  try {
+    const response = await axios(url, options);
+    console.log(response.data);
+    res.json(response.data); // Send the response data back to the client
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
+
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
