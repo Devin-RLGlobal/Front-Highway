@@ -44,7 +44,6 @@ app.get('/email', async (req, res) => {
     headers: { 
       'Content-Type': 'application/x-www-form-urlencoded', 
       'Authorization': 'Bearer' + process.env.HIGHWAYAPIKEY, 
-      'Cookie': '_highway_etl_session=MKCFiKKsnMoEkkOb6r7MxGkgCSZNrm0M6TVdGZqKBXl5s41dyYC4AJQLrsEvHFbJZwWdbGAYG6bgv2azZY%2FxNzkqDjy5UbWgNOeTNIfbPojOJbXB3E9snQHCwSnAnGJM65gIaWca9Ob%2B4T6zX4THFcS53siupeXpCHpkw%2FR3GVH5EM%2BSYAXnXaPwRDrAmKETisxHAiUFAhyAmTGOXnM4xg8kQtISpZaTix7vf2xn0Gw%3D--alD42mY6Y91hA1cu--0Y0mGzMhxxFqOo1MvHz47Q%3D%3D'
     },
     data : data
   };
