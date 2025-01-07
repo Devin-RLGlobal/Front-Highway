@@ -17,22 +17,27 @@ function searchDOTNumbers(body) {
     return matches || [];
 }
 
-async function getNumbers(){
-    let mcNums = []
-    let dotNums = []
-    await myContext.listMessages().then((data) => {
-        for (let i in data["results"]){
-            let body = data["results"][i]["content"]["body"]
-            mcNums.push(searchMCNumbers(body))
-            dotNums.push(searchDOTNumbers(body))
+async function getNumbers() {
+    try {
+        let mcNums = [];
+        let dotNums = [];
+        
+        const data = await myContext.listMessages();
+        
+        for (let result of data["results"]) {
+            let body = result["content"]["body"];
+            mcNums.push(searchMCNumbers(body));
+            dotNums.push(searchDOTNumbers(body));
         }
-        let contextEmail = myContext.conversation.recipient.handle
-        return {email: contextEmail, mc: mcNums, dot: dotNums}
-      }).catch((error) => {
+
+        let contextEmail = myContext.conversation.recipient.handle;
+        return { email: contextEmail, mc: mcNums, dot: dotNums };
+    } catch (error) {
         console.error(error);
-        return {}
-      });
+        return { error: "Failed to retrieve numbers", details: error.message };
+    }
 }
+
 
 async function fetchHighway() {
     let reqData = await getNumbers()
