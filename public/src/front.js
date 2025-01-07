@@ -2,19 +2,25 @@ const { Front } = window;
 let myContext = null
 
 function getMCNumbers(){
-
+    myContext.listMessages().then((data) => {
+        for (let i in data["results"]){
+            console.log(i)
+        }
+      }).catch((error) => {
+        console.error(error); // Handles any errors
+      });
 }
 
 function getDOTNumbers(){
-
-}
-
-async function fetchEmail() {
     myContext.listMessages().then((data) => {
         console.log(data); // Prints the data to the console
       }).catch((error) => {
         console.error(error); // Handles any errors
       });
+}
+
+async function fetchEmail() {
+    await getMCNumbers()
           try {
         const response = await fetch('/email');
         if (!response.ok) {
