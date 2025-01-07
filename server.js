@@ -32,31 +32,58 @@ app.post('/webhook', (req, res) => {
   res.status(200).send('Webhook received!');
 });
 
+
 app.get('/email', async (req, res) => {
-  let data = qs.stringify({
-    'email': 'test@gmail.com' 
-  });
-
-  let config = {
-    method: 'post',
-    maxBodyLength: Infinity,
-    url: 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers',
-    headers: { 
-      'Content-Type': 'application/x-www-form-urlencoded', 
-      'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY, 
-    },
-    data: data
-  };
-
   try {
-    const response = await axios.request(config);
-    console.log(JSON.stringify(response.data));
+    let data1 = qs.stringify({
+      'email': 'test@gmail.com'
+    });
 
-    // Return response to frontend
-    res.status(200).json(response.data);
+    let config1 = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers',
+      headers: { 
+        'Content-Type': 'application/x-www-form-urlencoded', 
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY, 
+      },
+      data: data1
+    };
+
+    let config2 = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=02478571&q[identifiers_is_type_eq]=DOT',
+      headers: { 
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
+      }
+    };
+
+    let config3 = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=02478571&q[identifiers_is_type_eq]=MC',
+      headers: { 
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
+      }
+    };
+
+    const [response1, response2, response3] = await Promise.all([
+      axios.request(config1),
+      axios.request(config2),
+      axios.request(config3)
+    ]);
+
+    const combinedData = {
+      emailSearch: response1.data,
+      dotSearch: response2.data,
+      mcSearch: response3.data
+    };
+
+    res.status(200).json(combinedData);
+
   } catch (error) {
     console.error('Error fetching data:', error);
-
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
