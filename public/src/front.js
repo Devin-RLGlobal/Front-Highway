@@ -10,9 +10,12 @@ function getDOTNumbers(){
 }
 
 async function fetchEmail() {
-    myContext.listMessages()
-    console.log(myContext.listMessages())
-    try {
+    myContext.listMessages().then((data) => {
+        console.log(data); // Prints the data to the console
+      }).catch((error) => {
+        console.error(error); // Handles any errors
+      });
+          try {
         const response = await fetch('/email');
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
               case 'singleConversation':
                 console.log('Selected conversation:', context.conversation);
-                fetchEmail();
+                await fetchEmail();
                 myContext = context
                 break;
               case 'multiConversations':
