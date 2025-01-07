@@ -17,10 +17,22 @@
     window.addEventListener('highwayDataUpdated', (event) => {
       const data = event.detail;
       const filteredData = {
-      email: data.emailSearch.email_search_result_category,
-      email2: data.emailSearch.email_search_result_category,
-      dot1: data,
-    };
+    Title: data.dotSearch.legal_name,
+    Description: data.dotSearch.authority_assessment.rating,
+    OverallResult: data.dotSearch.rules_assessment.overall_result,
+    SafetyRating: data.dotSearch.safety.safety_rating,
+    ContractStatus: data.dotSearch.authority.authorities.contract_authority_status || "N/A",
+    CommonStatus: data.dotSearch.authority.authorities.common_authority_status || "N/A",
+    BrokerStatus: data.dotSearch.authority.authorities.broker_authority_status || "N/A",
+    ConnectionStatus: data.dotSearch.connection || "N/A",
+    CarrierID: data.dotSearch.dot_number,
+    LegalName: data.dotSearch.legal_name,
+    MCNumber: data.dotSearch.mc_number,
+    DOTNumber: data.dotSearch.dot_number,
+    Address: `${data.dotSearch.addresses[0].street1}, ${data.dotSearch.addresses[0].city}, ${data.dotSearch.addresses[0].state} ${data.dotSearch.addresses[0].postal_code}`,
+    DispatchPhone: data.dotSearch.contact_information.dispatch_contact.phone,
+    DispatchEmail: data.dotSearch.contact_information.dispatch_contact.email_address
+  };
 
     const container = document.getElementById('highway-data');
     container.innerHTML = `<pre>${JSON.stringify(filteredData, null, 2)}</pre>`;
