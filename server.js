@@ -31,7 +31,7 @@ app.post('/webhook', (req, res) => {
   res.status(200).send('Webhook received!');
 });
 
-app.get('/api/alerts', async (req, res) => {
+app.get('/email', async (req, res) => {
   const url = 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers';
   
   const options = {

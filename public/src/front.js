@@ -1,9 +1,19 @@
 const { Front } = window;
 let myContext = null
 
-async function fetchAlerts() {
+function getMCNumbers(){
+
+}
+
+function getDOTNumbers(){
+
+}
+
+async function fetchEmail() {
+    myContext.listMessages()
+    console.log(myContext.listMessages())
     try {
-        const response = await fetch('/api/alerts');
+        const response = await fetch('/email');
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -21,7 +31,6 @@ export async function moveEmail() {
     let contextEmail = myContext.conversation.recipient.handle
     console.log(contextEmail)
     console.log('moveEmail function called!');
-    fetchAlerts();
 
     if (typeof Front !== 'undefined' && Front.context) {
         try {
@@ -53,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
               case 'singleConversation':
                 console.log('Selected conversation:', context.conversation);
+                fetchEmail();
                 myContext = context
                 break;
               case 'multiConversations':
