@@ -42,7 +42,7 @@ app.get('/email', async (req, res) => {
     let config1 = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers',
+      url: 'https://staging.gohighway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers',
       headers: { 
         'Content-Type': 'application/x-www-form-urlencoded', 
         'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY, 
@@ -62,7 +62,7 @@ app.get('/email', async (req, res) => {
     let config3 = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=02478571&q[identifiers_is_type_eq]=MC',
+      url: 'https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=585644&q[identifiers_is_type_eq]=MC',
       headers: { 
         'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
       }
