@@ -30,25 +30,44 @@ app.post('/webhook', (req, res) => {
 });
 
 app.get('/api/alerts', async (req, res) => {
-  try {
-    const response = await axios.get('https://staging.highway.com/core/connect/external_api/v1/alerts', {
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
+  const express = require('express');
+  const axios = require('axios');
+  const router = express.Router();
+  require('dotenv').config();
+  
+  router.post('/alerts', async (req, res) => {
+    try {
+      const { email } = req.body;
+      if (!email || typeof email !== 'string') {
+        return res.status(400).json({ error: 'Invalid email address' });
       }
-    });
-
-    res.json(response.data); 
-  } catch (error) {
-    console.error('Error fetching alerts:', error.message);
-
-    console.error('Full error details:', error.response ? error.response.data : error);
-
-    res.status(500).json({
-      error: 'Failed to fetch alerts',
-      details: error.response ? error.response.data : 'No response from server'
-    });
-  }
+  
+      const url = 'https://highway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers';
+  
+      const headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.HIGHWAYAPIKEY}`,
+      };
+  
+      const response = await axios.post(url, { email }, { headers });
+  
+      res.json(response.data);
+  
+    } catch (error) {
+      // Log full error details
+      console.error('Error fetching alerts:', error.message);
+      console.error('Response Data:', error.response?.data || 'No response data');
+  
+      // Send appropriate error response
+      res.status(error.response?.status || 500).json({
+        error: 'Failed to fetch alerts',
+        details: error.response?.data || 'Internal Server Error',
+      });
+    }
+  });
+  
+  module.exports = router;  
 });
 // Listen on the port provided by Glitch or default to 3000 locally
 const PORT = process.env.PORT || 3000;
