@@ -86,10 +86,10 @@ app.post('/email', async (req, res) => {
       ...dotConfigs.map(config => axios.request(config)),
       ...mcConfigs.map(config => axios.request(config))
     ]);
+    console.log(otherResponses)
 
     const dotResponses = otherResponses.slice(0, dotConfigs.length);
     const mcResponses = otherResponses.slice(dotConfigs.length);
-
     const combinedData = {
       emailSearch: emailResponse.data,
       dotSearch: dotResponses.map(res => res.data),
