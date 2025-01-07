@@ -2,7 +2,6 @@ export function getEmailContext() {
     // Fetch the email context
     Front.context.get()
       .then((context) => {
-        console.log('Context:', context);
   
         // Display the email subject
         if (context.message && context.message.subject) {

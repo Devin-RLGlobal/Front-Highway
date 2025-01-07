@@ -41,7 +41,6 @@ async function getNumbers() {
 
 async function fetchHighway() {
     let reqData = await getNumbers(); // Fetch the data
-    console.log(reqData); // Debugging
 
     try {
         const response = await fetch('/email', {
@@ -57,7 +56,7 @@ async function fetchHighway() {
         }
 
         const data = await response.json(); 
-        console.log(data);
+        console.log("Highway Data" + data)
     } catch (error) {
         console.error('Error fetching alerts:', error);
     }
@@ -66,8 +65,6 @@ async function fetchHighway() {
 
 
 export async function moveEmail() {
-    let contextEmail = myContext.conversation.recipient.handle
-    console.log(contextEmail)
 
     if (typeof Front !== 'undefined' && Front.context) {
         try {
@@ -77,7 +74,7 @@ export async function moveEmail() {
                 const targetInboxId = 'inb_e5wgs';
 
                 await myContext.move(targetInboxId)
-                console.log(`Conversation ${conversationId} moved to inbox ${targetInboxId}`);
+                console.warn(`Conversation ${conversationId} moved to inbox ${targetInboxId}`);
             } else {
                 console.warn('No single conversation selected or invalid context type.');
             }
@@ -94,11 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
         Front.contextUpdates.subscribe(async context => {
             switch(context.type) {
               case 'noConversation':
-                console.log('No conversation selected');
                 break;
               case 'singleConversation':
                 myContext = context
-                console.log(myContext)
                 await fetchHighway();
                 break;
               case 'multiConversations':

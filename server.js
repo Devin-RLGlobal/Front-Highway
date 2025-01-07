@@ -35,7 +35,6 @@ app.post('/webhook', (req, res) => {
 
 
 app.post('/email', async (req, res) => {
-  console.log('Request Body:', req.body);
 
   try {
     const { email, mc = [], dot = [] } = req.body;
@@ -56,12 +55,10 @@ app.post('/email', async (req, res) => {
     };
 
     const dotConfigs = cleanDOT.map(dotNumber => {
-      const url = `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`;
-      console.log('DOT URL:', url);
       return {
         method: 'get',
         maxBodyLength: Infinity,
-        url: url,
+        url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`,
         headers: { 
           'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
         }
@@ -69,12 +66,10 @@ app.post('/email', async (req, res) => {
     });
 
     const mcConfigs = cleanMC.map(mcNumber => {
-      const url = `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`;
-      console.log('MC URL:', url);
       return {
         method: 'get',
         maxBodyLength: Infinity,
-        url: url,
+        url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`,
         headers: { 
           'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
         }
@@ -86,7 +81,6 @@ app.post('/email', async (req, res) => {
       ...dotConfigs.map(config => axios.request(config)),
       ...mcConfigs.map(config => axios.request(config))
     ]);
-    console.log(otherResponses)
 
     const dotResponses = otherResponses.slice(0, dotConfigs.length);
     const mcResponses = otherResponses.slice(dotConfigs.length);
