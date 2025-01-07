@@ -4,7 +4,7 @@ let myContext = null
 function getMCNumbers(){
     myContext.listMessages().then((data) => {
         for (let i in data["results"]){
-            console.log(i)
+            console.log(data["results"][i]["content"]["body"])
         }
       }).catch((error) => {
         console.error(error); // Handles any errors
