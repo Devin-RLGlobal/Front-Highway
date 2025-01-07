@@ -40,14 +40,23 @@ async function getNumbers() {
 
 
 async function fetchHighway() {
-    let reqData = await getNumbers()
-    console.log(reqData)
+    let reqData = await getNumbers(); // Fetch the data
+    console.log(reqData); // Debugging
+
     try {
-        const response = await fetch('/email');
+        const response = await fetch('/email', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(reqData)
+        });
+
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const data = await response.json();
+
+        const data = await response.json(); 
         console.log(data);
     } catch (error) {
         console.error('Error fetching alerts:', error);

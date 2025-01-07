@@ -33,7 +33,8 @@ app.post('/webhook', (req, res) => {
 });
 
 
-app.get('/email', async (req, res) => {
+app.post('/email', async (req, res) => {
+  console.log(req)
   try {
     let data1 = qs.stringify({
       'email': 'test@gmail.com'
