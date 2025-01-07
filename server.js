@@ -32,14 +32,19 @@ app.post('/webhook', (req, res) => {
   res.status(200).send('Webhook received!');
 });
 
-
 app.post('/email', async (req, res) => {
-  console.log('Request Body:', req.body);
+  console.log('Request Body:', req.body); 
 
   try {
     const { email, mc = [], dot = [] } = req.body;
 
-    let data1 = qs.stringify({ 'email': email || '' });
+    const cleanMC = mc.map(num => num.replace(/MC/i, '').trim()); 
+    const cleanDOT = dot.map(num => num.replace(/DOT/i, '').trim()); 
+
+    console.log('Clean MC Numbers:', cleanMC);
+    console.log('Clean DOT Numbers:', cleanDOT); 
+
+    let data1 = qs.stringify({ 'email': email || 'test@gmail.com' });
 
     let config1 = {
       method: 'post',
@@ -51,32 +56,23 @@ app.post('/email', async (req, res) => {
       data: data1
     };
 
-    const dotConfigs = dot.map((dotNumber) => {
-      const url = `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`;
-      console.log('DOT Request URL:', url);
-      return {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: url,
-        headers: { 
-          'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
-        }
-      };
-    });
-    
-    const mcConfigs = mc.map((mcNumber) => {
-      const url = `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`;
-      console.log('MC Request URL:', url);
-      return {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: url,
-        headers: { 
-          'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
-        }
-      };
-    });
-    
+    const dotConfigs = cleanDOT.map(dotNumber => ({
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`,
+      headers: { 
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
+      }
+    }));
+
+    const mcConfigs = cleanMC.map(mcNumber => ({
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`,
+      headers: { 
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
+      }
+    }));
 
     const [emailResponse, ...otherResponses] = await Promise.all([
       axios.request(config1),
