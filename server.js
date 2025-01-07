@@ -39,7 +39,7 @@ app.post('/email', async (req, res) => {
   try {
     const { email, mc = [], dot = [] } = req.body;
 
-    let data1 = qs.stringify({ 'email': email || 'test@gmail.com' });
+    let data1 = qs.stringify({ 'email': email || '' });
 
     let config1 = {
       method: 'post',
