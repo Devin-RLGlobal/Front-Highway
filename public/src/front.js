@@ -21,16 +21,20 @@ function getNumbers(){
     myContext.listMessages().then((data) => {
         for (let i in data["results"]){
             let body = data["results"][i]["content"]["body"]
-            console.log(searchMCNumbers(body))
-            console.log(searchDOTNumbers(body))
+            let mcNums = searchMCNumbers(body)
+            let dotNums = searchDOTNumbers(body)
         }
+        let contextEmail = myContext.conversation.recipient.handle
+        return {email: contextEmail, mc: mcNums, dot: dotNums}
       }).catch((error) => {
         console.error(error);
+        return {}
       });
 }
 
 async function fetchHighway() {
-    await getNumbers()
+    let reqData = await getNumbers()
+    console.log(reqData)
     try {
         const response = await fetch('/email');
         if (!response.ok) {
@@ -78,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
               case 'singleConversation':
                 myContext = context
+                console.log(myContext)
                 await fetchHighway();
                 break;
               case 'multiConversations':
