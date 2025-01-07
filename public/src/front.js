@@ -18,11 +18,13 @@ function searchDOTNumbers(body) {
 }
 
 function getNumbers(){
+    let mcNums = []
+    let dotNums = []
     myContext.listMessages().then((data) => {
         for (let i in data["results"]){
             let body = data["results"][i]["content"]["body"]
-            let mcNums = searchMCNumbers(body)
-            let dotNums = searchDOTNumbers(body)
+            mcNums.push(searchMCNumbers(body))
+            dotNums.push(searchDOTNumbers(body))
         }
         let contextEmail = myContext.conversation.recipient.handle
         return {email: contextEmail, mc: mcNums, dot: dotNums}
