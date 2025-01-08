@@ -167,7 +167,7 @@ app.post('/highway', async (req, res) => {
       dotSearch: dotResponses.map(res => res.data),
       mcSearch: mcResponses.map(res => res.data)
     };
-    console.log(combinedData,toString('utf-8'))
+    console.log(combinedData.toString('utf-8'))
     res.status(200).json(combinedData);
 
   } catch (error) {
