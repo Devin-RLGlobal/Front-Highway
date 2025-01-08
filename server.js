@@ -19,6 +19,8 @@ const applicationSecret = process.env.FRONTSECRET;
 
 app.post('/webhook', (req, res) => {
   try {
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body.toString('utf-8')); 
     const signature = req.headers['x-front-signature'];
     const xFrontChallenge = req.headers['x-front-challenge'];
     const timestamp = req.headers['x-front-request-timestamp'] + ':';
