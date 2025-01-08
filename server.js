@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 app.post('/webhook', (req, res) => {
   console.log('Webhook hit at:', new Date().toISOString());
   console.log('Payload:', req.body);
+  console.log('Headers:', req.headers)
 
   res.status(200).send('Webhook received!');
 });
@@ -30,6 +31,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
   console.log('Webhook hit at:', new Date().toISOString());
   console.log('Payload:', req.body);
+  console.log('Headers:', req.headers)
 
   res.status(200).send('Webhook received!');
 });
