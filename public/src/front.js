@@ -43,7 +43,7 @@ export async function fetchHighway() {
     let reqData = await getNumbers(); 
 
     try {
-        const response = await fetch('/email', {
+        const response = await fetch('/highway', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json' 
