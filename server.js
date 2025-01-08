@@ -13,6 +13,7 @@ app.set('view engine', 'hbs');
 app.set('views', __dirname + '/src/pages');
 
 app.use(express.static('public'));
+app.use('/webhook', bodyParser.raw({ type: '*/*' }));
 
 
 app.post('/webhook', (req, res) => {
