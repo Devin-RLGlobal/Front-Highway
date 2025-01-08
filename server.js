@@ -7,9 +7,14 @@ const qs = require('qs');
 const crypto = require('crypto');
 
 const app = express();
+app.use(express.json({
+  verify: (req, res, buf) => {
+    if (req.originalUrl.startsWith('/webhook')) {
+      req.rawBody = buf.toString();
+    }
+  },
+   }));
 
-
-app.use(bodyParser.json());
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
 
 app.set('view engine', 'hbs');
@@ -24,7 +29,7 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
 });
 
-app.post('/webhook', bodyParser.raw({ type: '*/*' }), (req, res) => {
+app.post('/webhook', (req, res) => {
   try {
     const signature = req.headers['x-front-signature'];
     const xFrontChallenge = req.headers['x-front-challenge'];
@@ -48,7 +53,6 @@ app.post('/webhook', bodyParser.raw({ type: '*/*' }), (req, res) => {
 }
 
 });
-
 
 app.post('/email', async (req, res) => {
 
