@@ -156,8 +156,22 @@ app.post('/email', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
+function searchMCNumbers(body) {
+  const regex = /MC\d+/g;
 
-async function getNumbers(data) {
+  const matches = body.match(regex);
+
+  return matches || [];
+}
+
+function searchDOTNumbers(body) {
+  const regex = /DOT\d+/g;
+
+  const matches = body.match(regex);
+  
+  return matches || [];
+}
+ function getNumbers(data) {
   try {
       let mcNums = [];
       let dotNums = [];
