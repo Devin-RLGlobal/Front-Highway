@@ -47,30 +47,7 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
 });
 
-app.post('/webhook', (req, res) => {
-  try {
-    const signature = req.headers['x-front-signature'];
-    const xFrontChallenge = req.headers['x-front-challenge'];
-    const timestamp = req.headers['x-front-request-timestamp'] + ':';
-    const rawBody = req.body; 
 
-    const concatenated = Buffer.concat([Buffer.from(timestamp, 'utf-8'), rawBody]);
-    const hashed = crypto
-        .createHmac('sha256', applicationSecret)
-        .update(concatenated)
-        .digest('base64');
-
-    if (hashed === signature) {
-        res.status(200).send(xFrontChallenge); 
-    } else {
-        res.status(400).send('Bad Request: validation failed');
-    }
-} catch (error) {
-    console.error('Error processing webhook:', error);
-    res.status(500).send('Internal Server Error');
-}
-
-});
 
 app.post('/email', async (req, res) => {
 
