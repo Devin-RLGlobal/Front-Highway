@@ -20,13 +20,13 @@ const applicationSecret = process.env.FRONTSECRET;
 app.post('/webhook', (req, res) => {
   try {
     console.log('Headers:', req.headers);
-    console.log('Body:', req.body.toString('utf-8')); 
+    console.log('Raw Body:', req.body.toString('utf-8'));
+
     const signature = req.headers['x-front-signature'];
     const xFrontChallenge = req.headers['x-front-challenge'];
     const timestamp = req.headers['x-front-request-timestamp'] + ':';
 
     const rawBody = Buffer.isBuffer(req.body) ? req.body : Buffer.from(req.body);
-
     const concatenated = Buffer.concat([Buffer.from(timestamp, 'utf-8'), rawBody]);
 
     const hashed = crypto
@@ -35,8 +35,32 @@ app.post('/webhook', (req, res) => {
       .digest('base64');
 
     if (hashed === signature) {
-      const acceptHeader = req.headers['accept'];
+      console.log("Signature validation successful");
 
+      let parsedBody;
+      try {
+        parsedBody = JSON.parse(req.body.toString('utf-8'));
+      } catch (err) {
+        console.error('Error parsing webhook body:', err);
+        return res.status(400).send('Invalid JSON');
+      }
+
+      const payload = parsedBody.payload || {};
+      const target = payload.target || {};
+      const data = target.data || {};
+
+      const recipients = data.recipients || [];
+      const sender = recipients.find(r => r.role === 'from');
+      const senderEmail = sender ? sender.handle : 'Unknown';
+
+      const plainTextBody = data.text || 'No plain text body';
+      const htmlBody = data.body || 'No HTML body';
+
+      console.log('Sender Email:', senderEmail);
+      console.log('Plain Text Body:', plainTextBody);
+      console.log('HTML Body:', htmlBody);
+
+      const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
         res.status(200).json({ challenge: xFrontChallenge });
       } else if (acceptHeader === 'application/x-www-form-urlencoded') {
@@ -45,6 +69,7 @@ app.post('/webhook', (req, res) => {
         res.status(200).type('text/plain').send(xFrontChallenge);
       }
     } else {
+      console.error("Signature validation failed");
       res.status(400).send('Bad Request: validation failed');
     }
   } catch (error) {
