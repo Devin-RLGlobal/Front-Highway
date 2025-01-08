@@ -33,8 +33,15 @@ app.post('/webhook', (req, res) => {
       .digest('base64');
 
     if (hashed === signature) {
-      console.log("Should work")
-      res.status(200).send(xFrontChallenge); 
+      const acceptHeader = req.headers['accept'];
+
+      if (acceptHeader === 'application/json') {
+        res.status(200).json({ challenge: xFrontChallenge });
+      } else if (acceptHeader === 'application/x-www-form-urlencoded') {
+        res.status(200).send(`challenge=${xFrontChallenge}`);
+      } else {
+        res.status(200).type('text/plain').send(xFrontChallenge);
+      }
     } else {
       res.status(400).send('Bad Request: validation failed');
     }
