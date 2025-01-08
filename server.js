@@ -14,6 +14,7 @@ app.set('views', __dirname + '/src/pages');
 
 app.use(express.static('public'));
 app.use('/webhook', bodyParser.raw({ type: '*/*' }));
+const applicationSecret = process.env.FRONTSECRET;
 
 
 app.post('/webhook', (req, res) => {
@@ -44,7 +45,6 @@ app.post('/webhook', (req, res) => {
 
 app.use(bodyParser.json());
 
-const applicationSecret = process.env.FRONTSECRET;
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
