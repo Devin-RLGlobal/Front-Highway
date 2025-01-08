@@ -59,7 +59,11 @@ app.post('/webhook', (req, res) => {
       console.log('Sender Email:', senderEmail);
       console.log('Plain Text Body:', plainTextBody);
       console.log('HTML Body:', htmlBody);
-
+      let numResult = getNumbers(plainTextBody)
+      let mcnums = numResult['mc']
+      let dotnums = numResult['dot']
+      console.log(mcnums)
+      console.log(dotnums)
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
         res.status(200).json({ challenge: xFrontChallenge });
@@ -153,6 +157,23 @@ app.post('/email', async (req, res) => {
   }
 });
 
+async function getNumbers(data) {
+  try {
+      let mcNums = [];
+      let dotNums = [];
+      
+      
+
+      mcNums.push(searchMCNumbers(data));
+      dotNums.push(searchDOTNumbers(data));
+
+
+      return { mc: mcNums, dot: dotNums };
+  } catch (error) {
+      console.error(error);
+      return { error: "Failed to retrieve numbers", details: error.message };
+  }
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
