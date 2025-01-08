@@ -94,24 +94,21 @@ app.get('/', (req, res) => {
 
 async function callHighway(reqData) {
   try {
-      // Make a POST request to /email route
       const response = await axios.post('https://dolphin-app-w5254.ondigitalocean.app/highway', reqData, {
           headers: {
               'Content-Type': 'application/json',
           },
       });
 
-      // Check if the response status is successful
       if (response.status !== 200) {
           throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      // Return the response data
       return response.data;
 
   } catch (error) {
       console.error('Error calling /email route:', error.message);
-      throw error; // Rethrow the error
+      throw error; 
   }
 }
 
@@ -170,7 +167,7 @@ app.post('/highway', async (req, res) => {
       dotSearch: dotResponses.map(res => res.data),
       mcSearch: mcResponses.map(res => res.data)
     };
-
+    console.log(combinedData,toString('utf-8'))
     res.status(200).json(combinedData);
 
   } catch (error) {
