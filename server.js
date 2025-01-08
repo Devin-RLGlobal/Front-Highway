@@ -27,6 +27,12 @@ app.post('/webhook', (req, res) => {
   res.status(200).send('Webhook received!');
 });
 
+app.get('/webhook', (req, res) => {
+  console.log('Webhook hit at:', new Date().toISOString());
+  console.log('Payload:', req.body);
+
+  res.status(200).send('Webhook received!');
+});
 
 app.post('/email', async (req, res) => {
 

@@ -1,0 +1,1902 @@
+{
+
+  "dotSearch": [
+    [
+      {
+        "id": 711023,
+        "legal_name": "11K TRANSPORT INC",
+        "dba_name": null,
+        "connection": null,
+        "dot_number": "02478571",
+        "mc_number": "857567",
+        "identifiers": [
+          {
+            "is_type": "DOT",
+            "value": "02478571"
+          },
+          {
+            "is_type": "MC",
+            "value": "857567"
+          },
+          {
+            "is_type": "SCAC",
+            "value": "EKTP"
+          }
+        ],
+        "tax_identifiers": [],
+        "authority_assessment": {
+          "rating": "Authorized Carrier",
+          "carrier_interstate_authority_check": "Active",
+          "broker_interstate_authority_check": "Inactive",
+          "is_active_insurance": true,
+          "no_out_of_service_order": true,
+          "is_satisfactory_safety_rating": true,
+          "is_operating_status_active": true,
+          "is_inspection_history_greater_than_zero": true,
+          "latest_safety_rating": "Unrated"
+        },
+        "authority": {
+          "authorities": {
+            "common_authority_status": "Active",
+            "continuous_authority_grant_date_common": "2014-05-30",
+            "original_authority_grant_date_common": "2014-05-30",
+            "contract_authority_status": null,
+            "continuous_authority_grant_date_contract": null,
+            "original_authority_grant_date_contract": null,
+            "broker_authority_status": null,
+            "continuous_authority_grant_date_broker": null,
+            "original_authority_grant_date_broker": null
+          },
+          "licensed_capabilities": [
+            "Property"
+          ],
+          "latest_li_authority": {
+            "mx_type": null,
+            "rfc_number": null,
+            "common_authority": "Holds Active Authority",
+            "pending_common_authority": "No Application Pending",
+            "common_authority_revocation": "Not in Revocation",
+            "contract_authority": "No Authority",
+            "pending_contract_authority": "No Application Pending",
+            "contract_authority_revocation": "Not in Revocation",
+            "broker_authority": "No Authority",
+            "pending_broker_authority": "No Application Pending",
+            "broker_authority_revocation": "Not in Revocation",
+            "is_freight": true,
+            "is_passenger": false,
+            "is_household_goods": false,
+            "is_private_check": false,
+            "is_enterprise_check": false,
+            "is_bipd_required": false,
+            "is_cargo_required": false,
+            "is_bond_surety_required": false,
+            "bipd_on_file": 750,
+            "is_cargo_on_file": false,
+            "is_bond_surety_on_file": false,
+            "is_address_deliverable": true,
+            "file_date": "2024-12-18"
+          }
+        },
+        "addresses": [
+          {
+            "is_type": "mailing",
+            "street1": "10327 KIPLING ST",
+            "street2": "",
+            "city": "WESTCHESTER",
+            "postal_code": "60154",
+            "state": "IL",
+            "nationality": "US",
+            "last_seen_at": "2025-01-04T07:46:46.229-06:00"
+          },
+          {
+            "is_type": "physical",
+            "street1": "10327 KIPLING ST",
+            "street2": "",
+            "city": "WESTCHESTER",
+            "postal_code": "60154",
+            "state": "IL",
+            "nationality": "US",
+            "last_seen_at": "2025-01-04T07:46:46.229-06:00"
+          }
+        ],
+        "rules_assessment": {
+          "overall_result": "fail",
+          "summary": {
+            "overall_result": "fail",
+            "carrier_actions_to_improve_rules_result": "needs_to_connect_eld"
+          },
+          "classifications": [
+            {
+              "name": "Intrastate-US",
+              "result": "fail",
+              "rules": {
+                "has_verified_manually_entered_identifier": {
+                  "display_name": "Highway has completed manual review of non-DOT/MC identifier provided by Carrier",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_vin_if_auto_policy_is_scheduled_autos": {
+                  "display_name": "Carrier has schedule of VINs, if auto policy is Scheduled Autos",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_dot_number": {
+                  "display_name": "Carrier has a DOT number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_carrier_authority_is_active": {
+                  "display_name": "Interstate carrier authority is active for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "no_active_oos_orders": {
+                  "display_name": "Carrier has no active Out-Of-Service Orders",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safety_rating_satisfactory_or_unrated": {
+                  "display_name": "Safety Rating is one of Satisfactory or Unrated",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safer_operating_status_active": {
+                  "display_name": "Operating Status is Active or Authorized",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_no_published_identity_alerts": {
+                  "display_name": "Certain data properties require broker approval",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_verified_physical_location_activity": {
+                  "display_name": "Carrier has verified physical location or asset activity",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "multi_currency_bipd_requirement": {
+                  "display_name": "Minimum auto liability coverage of $1,000,000 USD or $1,500,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_cargo_requirement": {
+                  "display_name": "Minimum cargo insurance coverage of $100,000 USD or $150,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "insight_types_requiring_approval": {
+                  "display_name": "Undisclosed characteristics of compliance are satisfied",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "sets_requiring_override_file": {
+                  "display_name": "These rules require a file upload in order to be overridden",
+                  "result": [],
+                  "overrides": []
+                }
+              }
+            },
+            {
+              "name": "Hazmat",
+              "result": "fail",
+              "rules": {
+                "has_verified_manually_entered_identifier": {
+                  "display_name": "Highway has completed manual review of non-DOT/MC identifier provided by Carrier",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_vin_if_auto_policy_is_scheduled_autos": {
+                  "display_name": "Carrier has schedule of VINs, if auto policy is Scheduled Autos",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_phmsa": {
+                  "display_name": "Carrier has PHMSA certification",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "has_dot_number": {
+                  "display_name": "Carrier has a DOT number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_mc_number": {
+                  "display_name": "Carrier has an MC number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "is_authorized_for_property": {
+                  "display_name": "Carrier has an operating status authorized for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_carrier_authority_is_active": {
+                  "display_name": "Interstate carrier authority is active for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "no_active_oos_orders": {
+                  "display_name": "Carrier has no active Out-Of-Service Orders",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safety_rating_satisfactory_or_unrated": {
+                  "display_name": "Safety Rating is one of Satisfactory or Unrated",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safer_operating_status_active": {
+                  "display_name": "Operating Status is Active or Authorized",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_no_published_identity_alerts": {
+                  "display_name": "Certain data properties require broker approval",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_verified_physical_location_activity": {
+                  "display_name": "Carrier has verified physical location or asset activity",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "authority_age_requirement": {
+                  "display_name": "Minimum operating authority age of 270 days",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_bipd_requirement": {
+                  "display_name": "Minimum auto liability coverage of $5,000,000 USD or $7,500,000 CAD",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "multi_currency_cargo_requirement": {
+                  "display_name": "Minimum cargo insurance coverage of $100,000 USD or $150,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "insight_types_requiring_approval": {
+                  "display_name": "Undisclosed characteristics of compliance are satisfied",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "sets_requiring_override_file": {
+                  "display_name": "These rules require a file upload in order to be overridden",
+                  "result": [],
+                  "overrides": []
+                }
+              }
+            },
+            {
+              "name": "California Temperature Controlled",
+              "result": "fail",
+              "rules": {
+                "has_verified_manually_entered_identifier": {
+                  "display_name": "Highway has completed manual review of non-DOT/MC identifier provided by Carrier",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_vin_if_auto_policy_is_scheduled_autos": {
+                  "display_name": "Carrier has schedule of VINs, if auto policy is Scheduled Autos",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_carb_tru": {
+                  "display_name": "Carrier has CARB TRU certification",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "has_carb_truck_bus": {
+                  "display_name": "Carrier has CARB Truck and Bus certification",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "has_carb_acf": {
+                  "display_name": "Carrier has Advanced Clean Fleets certification",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "has_reefer_breakdown": {
+                  "display_name": "Carrier has refrigeration breakdown coverage",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_dot_number": {
+                  "display_name": "Carrier has a DOT number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_mc_number": {
+                  "display_name": "Carrier has an MC number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "is_authorized_for_property": {
+                  "display_name": "Carrier has an operating status authorized for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_carrier_authority_is_active": {
+                  "display_name": "Interstate carrier authority is active for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "no_active_oos_orders": {
+                  "display_name": "Carrier has no active Out-Of-Service Orders",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safety_rating_satisfactory_or_unrated": {
+                  "display_name": "Safety Rating is one of Satisfactory or Unrated",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safer_operating_status_active": {
+                  "display_name": "Operating Status is Active or Authorized",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_no_published_identity_alerts": {
+                  "display_name": "Certain data properties require broker approval",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_verified_physical_location_activity": {
+                  "display_name": "Carrier has verified physical location or asset activity",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "authority_age_requirement": {
+                  "display_name": "Minimum operating authority age of 270 days",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_bipd_requirement": {
+                  "display_name": "Minimum auto liability coverage of $1,000,000 USD or $1,500,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_cargo_requirement": {
+                  "display_name": "Minimum cargo insurance coverage of $100,000 USD or $150,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "insight_types_requiring_approval": {
+                  "display_name": "Undisclosed characteristics of compliance are satisfied",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "sets_requiring_override_file": {
+                  "display_name": "These rules require a file upload in order to be overridden",
+                  "result": [],
+                  "overrides": []
+                }
+              }
+            },
+            {
+              "name": "California Carrier",
+              "result": "fail",
+              "rules": {
+                "has_verified_manually_entered_identifier": {
+                  "display_name": "Highway has completed manual review of non-DOT/MC identifier provided by Carrier",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_vin_if_auto_policy_is_scheduled_autos": {
+                  "display_name": "Carrier has schedule of VINs, if auto policy is Scheduled Autos",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_carb_tru": {
+                  "display_name": "Carrier has CARB TRU certification",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "has_dot_number": {
+                  "display_name": "Carrier has a DOT number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_mc_number": {
+                  "display_name": "Carrier has an MC number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "is_authorized_for_property": {
+                  "display_name": "Carrier has an operating status authorized for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_carrier_authority_is_active": {
+                  "display_name": "Interstate carrier authority is active for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "no_active_oos_orders": {
+                  "display_name": "Carrier has no active Out-Of-Service Orders",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safety_rating_satisfactory_or_unrated": {
+                  "display_name": "Safety Rating is one of Satisfactory or Unrated",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safer_operating_status_active": {
+                  "display_name": "Operating Status is Active or Authorized",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_no_published_identity_alerts": {
+                  "display_name": "Certain data properties require broker approval",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_verified_physical_location_activity": {
+                  "display_name": "Carrier has verified physical location or asset activity",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "authority_age_requirement": {
+                  "display_name": "Minimum operating authority age of 270 days",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_bipd_requirement": {
+                  "display_name": "Minimum auto liability coverage of $1,000,000 USD or $1,500,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_cargo_requirement": {
+                  "display_name": "Minimum cargo insurance coverage of $100,000 USD or $150,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "insight_types_requiring_approval": {
+                  "display_name": "Undisclosed characteristics of compliance are satisfied",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "sets_requiring_override_file": {
+                  "display_name": "These rules require a file upload in order to be overridden",
+                  "result": [],
+                  "overrides": []
+                }
+              }
+            },
+            {
+              "name": "Canadian Carrier",
+              "result": "fail",
+              "rules": {
+                "has_verified_manually_entered_identifier": {
+                  "display_name": "Highway has completed manual review of non-DOT/MC identifier provided by Carrier",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_vin_if_auto_policy_is_scheduled_autos": {
+                  "display_name": "Carrier has schedule of VINs, if auto policy is Scheduled Autos",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_dot_number": {
+                  "display_name": "Carrier has a DOT number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_mc_number": {
+                  "display_name": "Carrier has an MC number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "is_authorized_for_property": {
+                  "display_name": "Carrier has an operating status authorized for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_carrier_authority_is_active": {
+                  "display_name": "Interstate carrier authority is active for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_broker_authority_is_active": {
+                  "display_name": "Interstate broker authority is active for property",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "no_active_oos_orders": {
+                  "display_name": "Carrier has no active Out-Of-Service Orders",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safety_rating_satisfactory_or_unrated": {
+                  "display_name": "Safety Rating is one of Satisfactory or Unrated",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_no_published_identity_alerts": {
+                  "display_name": "Certain data properties require broker approval",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_verified_physical_location_activity": {
+                  "display_name": "Carrier has verified physical location or asset activity",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "authority_age_requirement": {
+                  "display_name": "Minimum operating authority age of 270 days",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_bipd_requirement": {
+                  "display_name": "Minimum auto liability coverage of $1,000,000 USD or $1,500,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_cargo_requirement": {
+                  "display_name": "Minimum cargo insurance coverage of $100,000 USD or $150,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "sets_requiring_override_file": {
+                  "display_name": "These rules require a file upload in order to be overridden",
+                  "result": [],
+                  "overrides": []
+                }
+              }
+            },
+            {
+              "name": "Interstate",
+              "result": "fail",
+              "rules": {
+                "has_verified_manually_entered_identifier": {
+                  "display_name": "Highway has completed manual review of non-DOT/MC identifier provided by Carrier",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_vin_if_auto_policy_is_scheduled_autos": {
+                  "display_name": "Carrier has schedule of VINs, if auto policy is Scheduled Autos",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_dot_number": {
+                  "display_name": "Carrier has a DOT number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_mc_number": {
+                  "display_name": "Carrier has an MC number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "is_authorized_for_property": {
+                  "display_name": "Carrier has an operating status authorized for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_carrier_authority_is_active": {
+                  "display_name": "Interstate carrier authority is active for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "no_active_oos_orders": {
+                  "display_name": "Carrier has no active Out-Of-Service Orders",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safety_rating_satisfactory_or_unrated": {
+                  "display_name": "Safety Rating is one of Satisfactory or Unrated",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safer_operating_status_active": {
+                  "display_name": "Operating Status is Active or Authorized",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_no_published_identity_alerts": {
+                  "display_name": "Certain data properties require broker approval",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_verified_physical_location_activity": {
+                  "display_name": "Carrier has verified physical location or asset activity",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "authority_age_requirement": {
+                  "display_name": "Minimum operating authority age of 270 days",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_bipd_requirement": {
+                  "display_name": "Minimum auto liability coverage of $1,000,000 USD or $1,500,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_cargo_requirement": {
+                  "display_name": "Minimum cargo insurance coverage of $100,000 USD or $150,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "insight_types_requiring_approval": {
+                  "display_name": "Undisclosed characteristics of compliance are satisfied",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "sets_requiring_override_file": {
+                  "display_name": "These rules require a file upload in order to be overridden",
+                  "result": [],
+                  "overrides": []
+                }
+              }
+            },
+            {
+              "name": "Temperature Controlled",
+              "result": "fail",
+              "rules": {
+                "has_verified_manually_entered_identifier": {
+                  "display_name": "Highway has completed manual review of non-DOT/MC identifier provided by Carrier",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_vin_if_auto_policy_is_scheduled_autos": {
+                  "display_name": "Carrier has schedule of VINs, if auto policy is Scheduled Autos",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_reefer_breakdown": {
+                  "display_name": "Carrier has refrigeration breakdown coverage",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_dot_number": {
+                  "display_name": "Carrier has a DOT number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_mc_number": {
+                  "display_name": "Carrier has an MC number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "is_authorized_for_property": {
+                  "display_name": "Carrier has an operating status authorized for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_carrier_authority_is_active": {
+                  "display_name": "Interstate carrier authority is active for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "no_active_oos_orders": {
+                  "display_name": "Carrier has no active Out-Of-Service Orders",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safety_rating_satisfactory_or_unrated": {
+                  "display_name": "Safety Rating is one of Satisfactory or Unrated",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safer_operating_status_active": {
+                  "display_name": "Operating Status is Active or Authorized",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_no_published_identity_alerts": {
+                  "display_name": "Certain data properties require broker approval",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_verified_physical_location_activity": {
+                  "display_name": "Carrier has verified physical location or asset activity",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "authority_age_requirement": {
+                  "display_name": "Minimum operating authority age of 270 days",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_bipd_requirement": {
+                  "display_name": "Minimum auto liability coverage of $1,000,000 USD or $1,500,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_cargo_requirement": {
+                  "display_name": "Minimum cargo insurance coverage of $100,000 USD or $150,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "insight_types_requiring_approval": {
+                  "display_name": "Undisclosed characteristics of compliance are satisfied",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "sets_requiring_override_file": {
+                  "display_name": "These rules require a file upload in order to be overridden",
+                  "result": [],
+                  "overrides": []
+                }
+              }
+            },
+            {
+              "name": "High Value Cargo",
+              "result": "fail",
+              "rules": {
+                "has_verified_manually_entered_identifier": {
+                  "display_name": "Highway has completed manual review of non-DOT/MC identifier provided by Carrier",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_vin_if_auto_policy_is_scheduled_autos": {
+                  "display_name": "Carrier has schedule of VINs, if auto policy is Scheduled Autos",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_dot_number": {
+                  "display_name": "Carrier has a DOT number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_mc_number": {
+                  "display_name": "Carrier has an MC number",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "is_authorized_for_property": {
+                  "display_name": "Carrier has an operating status authorized for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "interstate_carrier_authority_is_active": {
+                  "display_name": "Interstate carrier authority is active for property",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "no_active_oos_orders": {
+                  "display_name": "Carrier has no active Out-Of-Service Orders",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safety_rating_satisfactory_or_unrated": {
+                  "display_name": "Safety Rating is one of Satisfactory or Unrated",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "safer_operating_status_active": {
+                  "display_name": "Operating Status is Active or Authorized",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_no_published_identity_alerts": {
+                  "display_name": "Certain data properties require broker approval",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "has_verified_physical_location_activity": {
+                  "display_name": "Carrier has verified physical location or asset activity",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "authority_age_requirement": {
+                  "display_name": "Minimum operating authority age of 270 days",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_bipd_requirement": {
+                  "display_name": "Minimum auto liability coverage of $1,000,000 USD or $1,500,000 CAD",
+                  "result": "pass",
+                  "overrides": []
+                },
+                "multi_currency_cargo_requirement": {
+                  "display_name": "Minimum cargo insurance coverage of $250,000 USD or $375,000 CAD",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "insight_types_requiring_approval": {
+                  "display_name": "Undisclosed characteristics of compliance are satisfied",
+                  "result": "fail",
+                  "overrides": []
+                },
+                "sets_requiring_override_file": {
+                  "display_name": "These rules require a file upload in order to be overridden",
+                  "result": [],
+                  "overrides": []
+                }
+              }
+            }
+          ]
+        },
+        "safety": {
+          "safety_rating": "Unrated",
+          "safety_rating_effective_date": null,
+          "safety_rating_review_date": null,
+          "safety_rating_review_type": null,
+          "latest_sms_basic": {
+            "file_date": "2024-11-30",
+            "driver_fitness_measure": "0.0",
+            "is_driver_fitness_acute_critical": false,
+            "driver_fitness_percentile": null,
+            "driver_fitness_over_threshold": false,
+            "hos_compliance_measure": "0.0",
+            "is_hos_compliance_acute_critical": false,
+            "hos_compliance_percentile": null,
+            "hos_compliance_over_threshold": false,
+            "substance_alcohol_measure": "0.0",
+            "is_substance_alcohol_acute_critical": false,
+            "substance_alcohol_percentile": null,
+            "substance_alcohol_over_threshold": false,
+            "unsafe_driving_measure": "3.02",
+            "is_unsafe_driving_acute_critical": false,
+            "unsafe_driving_percentile": 0.4575810042047984,
+            "unsafe_driving_over_threshold": false,
+            "vehicle_maintenance_measure": "1.63",
+            "is_vehicle_maintenance_acute_critical": false,
+            "vehicle_maintenance_percentile": 0.1338784274859597,
+            "vehicle_maintenance_over_threshold": false
+          },
+          "sms_basics": [
+            {
+              "file_date": "2024-12-31",
+              "driver_fitness_measure": "0.0",
+              "is_driver_fitness_acute_critical": false,
+              "hos_compliance_measure": "0.0",
+              "is_hos_compliance_acute_critical": false,
+              "substance_alcohol_measure": "0.0",
+              "is_substance_alcohol_acute_critical": false,
+              "unsafe_driving_measure": "3.31",
+              "is_unsafe_driving_acute_critical": false,
+              "vehicle_maintenance_measure": "1.63",
+              "is_vehicle_maintenance_acute_critical": false
+            },
+            {
+              "file_date": "2024-11-30",
+              "driver_fitness_measure": "0.0",
+              "is_driver_fitness_acute_critical": false,
+              "hos_compliance_measure": "0.0",
+              "is_hos_compliance_acute_critical": false,
+              "substance_alcohol_measure": "0.0",
+              "is_substance_alcohol_acute_critical": false,
+              "unsafe_driving_measure": "3.02",
+              "is_unsafe_driving_acute_critical": false,
+              "vehicle_maintenance_measure": "1.63",
+              "is_vehicle_maintenance_acute_critical": false
+            },
+            {
+              "file_date": "2024-10-31",
+              "driver_fitness_measure": "0.0",
+              "is_driver_fitness_acute_critical": false,
+              "hos_compliance_measure": "0.0",
+              "is_hos_compliance_acute_critical": false,
+              "substance_alcohol_measure": "0.0",
+              "is_substance_alcohol_acute_critical": false,
+              "unsafe_driving_measure": "2.17",
+              "is_unsafe_driving_acute_critical": false,
+              "vehicle_maintenance_measure": "1.16",
+              "is_vehicle_maintenance_acute_critical": false
+            },
+            {
+              "file_date": "2024-09-30",
+              "driver_fitness_measure": "0.0",
+              "is_driver_fitness_acute_critical": false,
+              "hos_compliance_measure": "0.0",
+              "is_hos_compliance_acute_critical": false,
+              "substance_alcohol_measure": "0.0",
+              "is_substance_alcohol_acute_critical": false,
+              "unsafe_driving_measure": "2.05",
+              "is_unsafe_driving_acute_critical": false,
+              "vehicle_maintenance_measure": "1.26",
+              "is_vehicle_maintenance_acute_critical": false
+            },
+            {
+              "file_date": "2024-08-31",
+              "driver_fitness_measure": "0.0",
+              "is_driver_fitness_acute_critical": false,
+              "hos_compliance_measure": "0.0",
+              "is_hos_compliance_acute_critical": false,
+              "substance_alcohol_measure": "0.0",
+              "is_substance_alcohol_acute_critical": false,
+              "unsafe_driving_measure": "1.92",
+              "is_unsafe_driving_acute_critical": false,
+              "vehicle_maintenance_measure": "1.4",
+              "is_vehicle_maintenance_acute_critical": false
+            },
+            {
+              "file_date": "2024-07-31",
+              "driver_fitness_measure": "0.0",
+              "is_driver_fitness_acute_critical": false,
+              "hos_compliance_measure": "0.0",
+              "is_hos_compliance_acute_critical": false,
+              "substance_alcohol_measure": "0.0",
+              "is_substance_alcohol_acute_critical": false,
+              "unsafe_driving_measure": "2.13",
+              "is_unsafe_driving_acute_critical": false,
+              "vehicle_maintenance_measure": "1.9",
+              "is_vehicle_maintenance_acute_critical": false
+            }
+          ]
+        },
+        "certifications": {
+          "all": [
+            {
+              "is_type": "TWIC",
+              "external_id": null,
+              "file_date": "2024-03-04",
+              "is_verified": false
+            },
+            {
+              "is_type": "TSA",
+              "external_id": null,
+              "file_date": "2024-03-04",
+              "is_verified": false
+            }
+          ],
+          "verified": {
+            "carb": false,
+            "carb_number": null,
+            "carb_start": null,
+            "carb_end": null,
+            "carb_tru": false,
+            "carb_tru_number": null,
+            "carb_tru_start": null,
+            "carb_tru_end": null,
+            "carb_acf": false,
+            "carb_acf_number": null,
+            "carb_acf_start": null,
+            "carb_acf_end": null,
+            "hazmat": false,
+            "hazmat_number": null,
+            "hazmat_start": null,
+            "hazmat_end": null,
+            "smart_way": false,
+            "smart_way_number": null,
+            "smart_way_start": null,
+            "smart_way_end": null
+          }
+        },
+        "contact_information": {
+          "dispatch_contact": {
+            "name": "DISPATCH USER",
+            "phone": "(773) 719-4858",
+            "email_address": "tosergiy@yahho.com"
+          },
+          "line_item_contacts": [
+            {
+              "is_type": "dispatch",
+              "name": "DISPATCH USER",
+              "email_address": "tosergiy@yahho.com",
+              "phone": "(773) 719-4858"
+            }
+          ],
+          "contacts": [
+            {
+              "is_type": "dispatch",
+              "name": "DISPATCH USER"
+            },
+            {
+              "is_type": "billing",
+              "name": "TEST USER"
+            },
+            {
+              "is_type": "claims",
+              "name": "TEST USER"
+            }
+          ],
+          "phones": [
+            {
+              "is_type": "dispatch",
+              "value": "(773) 719-4858",
+              "country_code": "US",
+              "country_code_prefix": "+1"
+            },
+            {
+              "is_type": "billing",
+              "value": "(817) 881-9536",
+              "country_code": "US",
+              "country_code_prefix": "+1"
+            },
+            {
+              "is_type": "claims",
+              "value": "(817) 881-9536",
+              "country_code": "US",
+              "country_code_prefix": "+1"
+            }
+          ],
+          "email_addresses": [
+            {
+              "is_type": "dispatch",
+              "value": "tosergiy@yahho.com"
+            }
+          ]
+        },
+        "inspections": {
+          "total_inspections": 83,
+          "driver_fitness_inspections": 65,
+          "driver_fitness_oos_inspections": 0,
+          "hazmat_inspections": 0,
+          "hazmat_oos_inspections": 0,
+          "vehicle_maintenance_inspections": 22,
+          "vehicle_maintenance_oos_inspections": 2
+        },
+        "crashes": {
+          "total": 5,
+          "fatal_crashes_total": 0,
+          "injury_crashes_total": 1,
+          "tow_away_crashes_total": 4
+        },
+        "insurance": {
+          "bipd_required": 750,
+          "insurance_policies": [
+            {
+              "id": 31211,
+              "status": "active",
+              "is_type": "automobile_liability",
+              "number": "BB33CE86A40D05E68D4D69CEECE7A8ED",
+              "limit": "1000000.0",
+              "limit_type": "combined_single_limit",
+              "effective_date": "2022-02-25",
+              "expiration_date": "2032-01-01",
+              "cancellation_date": null,
+              "insurance_certificate_id": 17668,
+              "has_additional_insured": false,
+              "has_subrogration_waived": false,
+              "currency": "usd",
+              "scheduled_autos": false,
+              "any_auto": true,
+              "owned_autos": false,
+              "hired_autos": true,
+              "non_owned_autos": true,
+              "insurance_insurer": {
+                "name": "BENCHMARK INSURANCE COMPANY",
+                "short_name": "BENCHMARK INS CO",
+                "naic": "41394",
+                "street1": "151 LAKE STREET WEST",
+                "street2": null,
+                "city": "WAYZATA",
+                "state": "MN",
+                "phone": "9529742265",
+                "postal_code": "55391",
+                "website": "www.benchmarkinsco.com",
+                "am_best_rating": "A"
+              }
+            },
+            {
+              "id": 31208,
+              "status": "active",
+              "is_type": "commercial_general_liability",
+              "number": "2C989F9E346CE242CA538CA1816BFBCA",
+              "limit": "1000000.0",
+              "limit_type": "each_occurrence",
+              "effective_date": "2022-12-20",
+              "expiration_date": "2032-01-01",
+              "cancellation_date": null,
+              "insurance_certificate_id": 17668,
+              "has_additional_insured": false,
+              "has_subrogration_waived": false,
+              "currency": "usd",
+              "insurance_insurer": {
+                "name": "STEWART TITLE GUARANTY COMPANY",
+                "short_name": "STEWART TITLE GUAR CO",
+                "naic": "50121",
+                "street1": "1360 POST OAK BOULEVARD",
+                "street2": null,
+                "city": "HOUSTON",
+                "state": "TX",
+                "phone": "7136258044",
+                "postal_code": "77056",
+                "website": "www.stewart.com",
+                "am_best_rating": "A-"
+              }
+            },
+            {
+              "id": 31209,
+              "status": "active",
+              "is_type": "contingent_auto",
+              "number": "205E9F043F914A1E7A7A68C15A2B675D",
+              "limit": "1000000.0",
+              "limit_type": "combined_single_limit",
+              "effective_date": "2022-12-20",
+              "expiration_date": "2032-01-01",
+              "cancellation_date": null,
+              "insurance_certificate_id": 17668,
+              "has_additional_insured": false,
+              "has_subrogration_waived": false,
+              "currency": "usd",
+              "insurance_insurer": {
+                "name": "STEWART TITLE GUARANTY COMPANY",
+                "short_name": "STEWART TITLE GUAR CO",
+                "naic": "50121",
+                "street1": "1360 POST OAK BOULEVARD",
+                "street2": null,
+                "city": "HOUSTON",
+                "state": "TX",
+                "phone": "7136258044",
+                "postal_code": "77056",
+                "website": "www.stewart.com",
+                "am_best_rating": "A-"
+              }
+            },
+            {
+              "id": 31213,
+              "status": "active",
+              "is_type": "contingent_cargo",
+              "number": "92E7B1FB0E80AE93466D113B0DA4B257",
+              "limit": "1000000.0",
+              "limit_type": "limit",
+              "effective_date": "2022-12-20",
+              "expiration_date": "2032-01-01",
+              "cancellation_date": null,
+              "insurance_certificate_id": 17668,
+              "has_additional_insured": false,
+              "has_subrogration_waived": false,
+              "currency": "usd",
+              "is_refrigeration_breakdown_included": false,
+              "insurance_insurer": {
+                "name": "STEWART TITLE GUARANTY COMPANY",
+                "short_name": "STEWART TITLE GUAR CO",
+                "naic": "50121",
+                "street1": "1360 POST OAK BOULEVARD",
+                "street2": null,
+                "city": "HOUSTON",
+                "state": "TX",
+                "phone": "7136258044",
+                "postal_code": "77056",
+                "website": "www.stewart.com",
+                "am_best_rating": "A-"
+              }
+            },
+            {
+              "id": 31214,
+              "status": "active",
+              "is_type": "motor_truck_cargo",
+              "number": "7DB6D47E7498F68126F11717775C785C",
+              "limit": "100000.0",
+              "limit_type": "limit",
+              "effective_date": "2022-04-01",
+              "expiration_date": "2032-01-01",
+              "cancellation_date": null,
+              "insurance_certificate_id": 17668,
+              "has_additional_insured": false,
+              "has_subrogration_waived": false,
+              "currency": "usd",
+              "is_refrigeration_breakdown_included": true,
+              "insurance_insurer": {
+                "name": "PROGRESSIVE NORTHERN INSURANCE COMPANY",
+                "short_name": "PROGRESSIVE NORTHERN INS CO",
+                "naic": "38628",
+                "street1": "6300 WILSON MILLS ROAD, W33",
+                "street2": null,
+                "city": "CLEVELAND",
+                "state": "OH",
+                "phone": "4404615000",
+                "postal_code": "44143-2182",
+                "website": "progressive.com",
+                "am_best_rating": "A+"
+              }
+            },
+            {
+              "id": 31212,
+              "status": "active",
+              "is_type": "trailer_interchange",
+              "number": "49658DC24BB61B0F00E868423444443B",
+              "limit": "40000.0",
+              "limit_type": "limit",
+              "effective_date": "2022-04-01",
+              "expiration_date": "2032-01-01",
+              "cancellation_date": null,
+              "insurance_certificate_id": 17668,
+              "has_additional_insured": false,
+              "has_subrogration_waived": false,
+              "currency": "usd",
+              "actual_cash_value": false,
+              "insurance_insurer": {
+                "name": "PROGRESSIVE NORTHERN INSURANCE COMPANY",
+                "short_name": "PROGRESSIVE NORTHERN INS CO",
+                "naic": "38628",
+                "street1": "6300 WILSON MILLS ROAD, W33",
+                "street2": null,
+                "city": "CLEVELAND",
+                "state": "OH",
+                "phone": "4404615000",
+                "postal_code": "44143-2182",
+                "website": "progressive.com",
+                "am_best_rating": "A+"
+              }
+            },
+            {
+              "id": 31210,
+              "status": "active",
+              "is_type": "workers_compensation",
+              "number": "42C5E127B451CBABA73D6906FF222B49",
+              "limit": "1000000.0",
+              "limit_type": "limit",
+              "effective_date": "2022-09-01",
+              "expiration_date": "2032-01-01",
+              "cancellation_date": null,
+              "insurance_certificate_id": 17668,
+              "has_additional_insured": false,
+              "has_subrogration_waived": false,
+              "currency": "usd",
+              "statutory_limits": false,
+              "insurance_insurer": {
+                "name": "NATIONAL INTERSTATE INSURANCE COMPANY",
+                "short_name": "NATIONAL INTERSTATE INS CO",
+                "naic": "32620",
+                "street1": "3250 INTERSTATE DRIVE",
+                "street2": null,
+                "city": "RICHFIELD",
+                "state": "OH",
+                "phone": "3306598900",
+                "postal_code": "44286",
+                "website": "www.natl.com",
+                "am_best_rating": "A+"
+              }
+            }
+          ],
+          "insurance_certificates": [
+            {
+              "id": 17668,
+              "file": {
+                "id": 100626,
+                "filename": "Highway - Sprinter.pdf",
+                "content_type": "application/pdf",
+                "url": "https://highway-staging-monitor.s3.amazonaws.com/insurance_incoming_mails/4826/f49e5dcb85ad2105d0a65c2c?response-content-disposition=inline%3B%20filename%3D%22Highway%20-%20Sprinter.pdf%22%3B%20filename%2A%3DUTF-8%27%27Highway%2520-%2520Sprinter.pdf&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA5TETHIMSCBV3TEKJ%2F20250107%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250107T192554Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHsaCXVzLWVhc3QtMSJGMEQCIDv%2BGv9L8cGVpyMRlFsuofXQ3jCcOrEqQmIZ9RlkjnSNAiB%2FDyAueyVTQn59nkdqFnbV6m5k843VoDw1BT5nlC5DhSr1AwhkEAIaDDkzNDQ2NDE0NDE2NCIMIAI1V3L2sE8p65E2KtIDyskkQ2vNtGXxNxuSx5crLOUP6ImBfVKjEHUe8x0e1VBm4LTYV2F7QrfEM8EGkpUarYqzfi7e0WAN9Y0TgG02qnQYh99shlGGWhH%2F29jYUi34J5gzJqfKFy3HLOSrXGWlIx%2B8VXdo7CM0fLnCe0SeyePIwJhoVpF5XBvXiQ83gsRVp2VmkZqvD9t5x6JSCLkFclUqcRhd025TrQwOU9KKp9MVau%2BLtyUCs7dO3l8DOlQi5n1u1Dvi%2ByYMsU8OGtAF8FVSxrMfGaEfT62odaw2RCtwYhIGohFxnDoTb61WkBdLpdqCIQn2FzryPmUPGzpUWBvzSZx0t72QsvqL6cVEs7Txo3uu6dOS8WXN%2FHH6AfgjEX2bO7%2Bu21PQimByH%2FksfmoUvHg4%2FNrbnWe3n3EDosiSuIlOTHYLoBYuyfRzbeOsFX%2F8G5E2FJEYStC6Ho%2Fa1zyLhjsYXlgivSHrCEMfVlklhs%2BUgPGoVAYF%2BA3iJQssZNUj9z9bbNs9SOttRpnbaduM9oTxkUvHxTsOYFcKpDv2AQ4p%2FNFHorJJcIjakS2l%2Bojjv%2FhJDUbfoFz4wK5qsqtF2UDjR3xfMSm5jGB9zv6zL%2BkN2zTvONHbj%2B5uFr7G2jDS6PW7BjqmASbEI06CI9g44hjJjbHm5pi2BtWsIsQohDiUeYc%2FSd4yMmHNC9NVPMZHwFDHCcWLnNVehiCeerqty2emuTE%2Fcd5GAaCxPLZ2p72UZYoCZcQcMvTI64M4InzfsVwL1A2sc6znRT3HrCp5EAHYJXi3Mz7XnrmWoaQReD6NYfqL5fww2GQX1kFcjtS2aLP9uF3FsTSrNqSEF4pOrdHk8iVaD2xpbRbULqE%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=e6d6b3272f96be1bfdc923f25c6ac3b2ed125044abac17a3275297c8ec94b990"
+              }
+            }
+          ],
+          "exclusions": [
+            {
+              "id": 6697,
+              "is_type": "batteries",
+              "carrier_id": 711023,
+              "file_date": "2024-03-04",
+              "created_at": "2024-03-04T12:32:00.691-06:00",
+              "updated_at": "2024-03-04T12:32:00.691-06:00"
+            },
+            {
+              "id": 6698,
+              "is_type": "electronics",
+              "carrier_id": 711023,
+              "file_date": "2024-03-04",
+              "created_at": "2024-03-04T12:32:00.701-06:00",
+              "updated_at": "2024-03-04T12:32:00.701-06:00"
+            }
+          ]
+        },
+        "pending_active_insurance": {
+          "bipd_required": 750,
+          "insurance_policies": [],
+          "insurance_certificates": []
+        },
+        "carrier_modes": [
+          {
+            "is_type": "truckload"
+          }
+        ],
+        "operations": {
+          "operating_status": "AUTHORIZED FOR Property",
+          "operating_status_date": "2024-09-21",
+          "carrier_operation": "Interstate",
+          "mcs150_form_date": "2024-09-18",
+          "mcs150_year": 2023,
+          "mcs150_mileage": 5433948,
+          "mcsip_step_description": null,
+          "mcsip_date": null,
+          "classifications": [
+            "Authorized For Hire"
+          ],
+          "fleet_size": "56-75",
+          "cargo_carried": [
+            {
+              "id": 1,
+              "name": "General Freight"
+            }
+          ],
+          "entity_types": [
+            {
+              "id": 1,
+              "name": "Carrier"
+            }
+          ],
+          "total_power_units": 59,
+          "owned_tractors": 0,
+          "owned_trailers": 0,
+          "term_leased_tractors": 59,
+          "term_leased_trailers": 70,
+          "total_drivers": 64
+        },
+        "equipment": {
+          "summary": {
+            "van_trailers": 47,
+            "reefer_trailers": 0,
+            "flatbed_trailers": 0,
+            "tanker_trailers": 0,
+            "intermodal_trailers": 0,
+            "pneumatic_trailers": 0,
+            "dumps_trailers": 0,
+            "car_hauler_trailers": 0,
+            "double_drop_trailers": 0,
+            "lowboy_trailers": 0,
+            "grain_trailers": 0,
+            "livestock_trailers": 0,
+            "heavy_haul_trailers": 0,
+            "drop_deck_trailers": 0,
+            "refuse_transfer_trailers": 0,
+            "forestry_trailers": 0,
+            "uncategorized_trailers": 0,
+            "total_observed_trailers": 47,
+            "truck_tractors": 40,
+            "cargo_vans": 0,
+            "straight_box_trucks": 0,
+            "buses": 0,
+            "uncategorized_trucks": 3,
+            "total_observed_power_units": 43
+          }
+        },
+        "lane_preferences": {
+          "by_state": {
+            "preferred_areas": [
+              {
+                "id": 29,
+                "code": "ND",
+                "name": "NORTH DAKOTA",
+                "is_type": "state"
+              },
+              {
+                "id": 24,
+                "code": "MN",
+                "name": "MINNESOTA",
+                "is_type": "state"
+              },
+              {
+                "id": 45,
+                "code": "TX",
+                "name": "TEXAS",
+                "is_type": "state"
+              },
+              {
+                "id": 30,
+                "code": "NE",
+                "name": "NEBRASKA",
+                "is_type": "state"
+              },
+              {
+                "id": 33,
+                "code": "NM",
+                "name": "NEW MEXICO",
+                "is_type": "state"
+              },
+              {
+                "id": 53,
+                "code": "WY",
+                "name": "WYOMING",
+                "is_type": "state"
+              },
+              {
+                "id": 4,
+                "code": "AZ",
+                "name": "ARIZONA",
+                "is_type": "state"
+              },
+              {
+                "id": 37,
+                "code": "OK",
+                "name": "OKLAHOMA",
+                "is_type": "state"
+              },
+              {
+                "id": 6,
+                "code": "CO",
+                "name": "COLORADO",
+                "is_type": "state"
+              },
+              {
+                "id": 34,
+                "code": "NV",
+                "name": "NEVADA",
+                "is_type": "state"
+              },
+              {
+                "id": 3,
+                "code": "AR",
+                "name": "ARKANSAS",
+                "is_type": "state"
+              },
+              {
+                "id": 5,
+                "code": "CA",
+                "name": "CALIFORNIA",
+                "is_type": "state"
+              },
+              {
+                "id": 17,
+                "code": "KS",
+                "name": "KANSAS",
+                "is_type": "state"
+              },
+              {
+                "id": 13,
+                "code": "IA",
+                "name": "IOWA",
+                "is_type": "state"
+              },
+              {
+                "id": 27,
+                "code": "MT",
+                "name": "MONTANA",
+                "is_type": "state"
+              },
+              {
+                "id": 43,
+                "code": "SD",
+                "name": "SOUTH DAKOTA",
+                "is_type": "state"
+              },
+              {
+                "id": 19,
+                "code": "LA",
+                "name": "LOUISIANA",
+                "is_type": "state"
+              },
+              {
+                "id": 25,
+                "code": "MO",
+                "name": "MISSOURI",
+                "is_type": "state"
+              }
+            ],
+            "terminal_or_headquarter_areas": [
+              {
+                "id": 15,
+                "code": "IL",
+                "name": "ILLINOIS",
+                "is_type": "state"
+              }
+            ],
+            "historical_presence_areas": [
+              {
+                "id": 29,
+                "code": "ND",
+                "name": "NORTH DAKOTA",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 24,
+                "code": "MN",
+                "name": "MINNESOTA",
+                "is_type": "state",
+                "number_of_touches": 4
+              },
+              {
+                "id": 16,
+                "code": "IN",
+                "name": "INDIANA",
+                "is_type": "state",
+                "number_of_touches": 3
+              },
+              {
+                "id": 47,
+                "code": "VA",
+                "name": "VIRGINIA",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 51,
+                "code": "WI",
+                "name": "WISCONSIN",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 52,
+                "code": "WV",
+                "name": "WEST VIRGINIA",
+                "is_type": "state",
+                "number_of_touches": 4
+              },
+              {
+                "id": 33,
+                "code": "NM",
+                "name": "NEW MEXICO",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 22,
+                "code": "ME",
+                "name": "MAINE",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 9,
+                "code": "DE",
+                "name": "DELAWARE",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 35,
+                "code": "NY",
+                "name": "NEW YORK",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 28,
+                "code": "NC",
+                "name": "NORTH CAROLINA",
+                "is_type": "state",
+                "number_of_touches": 3
+              },
+              {
+                "id": 18,
+                "code": "KY",
+                "name": "KENTUCKY",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 39,
+                "code": "PA",
+                "name": "PENNSYLVANIA",
+                "is_type": "state",
+                "number_of_touches": 9
+              },
+              {
+                "id": 53,
+                "code": "WY",
+                "name": "WYOMING",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 32,
+                "code": "NJ",
+                "name": "NEW JERSEY",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 10,
+                "code": "FL",
+                "name": "FLORIDA",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 15,
+                "code": "IL",
+                "name": "ILLINOIS",
+                "is_type": "state",
+                "number_of_touches": 7
+              },
+              {
+                "id": 6,
+                "code": "CO",
+                "name": "COLORADO",
+                "is_type": "state",
+                "number_of_touches": 4
+              },
+              {
+                "id": 17,
+                "code": "KS",
+                "name": "KANSAS",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 42,
+                "code": "SC",
+                "name": "SOUTH CAROLINA",
+                "is_type": "state",
+                "number_of_touches": 5
+              },
+              {
+                "id": 13,
+                "code": "IA",
+                "name": "IOWA",
+                "is_type": "state",
+                "number_of_touches": 4
+              },
+              {
+                "id": 27,
+                "code": "MT",
+                "name": "MONTANA",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 43,
+                "code": "SD",
+                "name": "SOUTH DAKOTA",
+                "is_type": "state",
+                "number_of_touches": 12
+              },
+              {
+                "id": 21,
+                "code": "MD",
+                "name": "MARYLAND",
+                "is_type": "state",
+                "number_of_touches": 3
+              },
+              {
+                "id": 19,
+                "code": "LA",
+                "name": "LOUISIANA",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 44,
+                "code": "TN",
+                "name": "TENNESSEE",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 25,
+                "code": "MO",
+                "name": "MISSOURI",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 36,
+                "code": "OH",
+                "name": "OHIO",
+                "is_type": "state",
+                "number_of_touches": 8
+              }
+            ],
+            "headquarter_areas": [
+              {
+                "id": 15,
+                "code": "IL",
+                "name": "ILLINOIS",
+                "is_type": "state"
+              }
+            ],
+            "inspection_areas": [
+              {
+                "id": 29,
+                "code": "ND",
+                "name": "NORTH DAKOTA",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 24,
+                "code": "MN",
+                "name": "MINNESOTA",
+                "is_type": "state",
+                "number_of_touches": 4
+              },
+              {
+                "id": 16,
+                "code": "IN",
+                "name": "INDIANA",
+                "is_type": "state",
+                "number_of_touches": 3
+              },
+              {
+                "id": 47,
+                "code": "VA",
+                "name": "VIRGINIA",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 51,
+                "code": "WI",
+                "name": "WISCONSIN",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 52,
+                "code": "WV",
+                "name": "WEST VIRGINIA",
+                "is_type": "state",
+                "number_of_touches": 4
+              },
+              {
+                "id": 33,
+                "code": "NM",
+                "name": "NEW MEXICO",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 22,
+                "code": "ME",
+                "name": "MAINE",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 9,
+                "code": "DE",
+                "name": "DELAWARE",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 35,
+                "code": "NY",
+                "name": "NEW YORK",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 28,
+                "code": "NC",
+                "name": "NORTH CAROLINA",
+                "is_type": "state",
+                "number_of_touches": 3
+              },
+              {
+                "id": 18,
+                "code": "KY",
+                "name": "KENTUCKY",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 39,
+                "code": "PA",
+                "name": "PENNSYLVANIA",
+                "is_type": "state",
+                "number_of_touches": 9
+              },
+              {
+                "id": 53,
+                "code": "WY",
+                "name": "WYOMING",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 32,
+                "code": "NJ",
+                "name": "NEW JERSEY",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 10,
+                "code": "FL",
+                "name": "FLORIDA",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 15,
+                "code": "IL",
+                "name": "ILLINOIS",
+                "is_type": "state",
+                "number_of_touches": 7
+              },
+              {
+                "id": 6,
+                "code": "CO",
+                "name": "COLORADO",
+                "is_type": "state",
+                "number_of_touches": 4
+              },
+              {
+                "id": 17,
+                "code": "KS",
+                "name": "KANSAS",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 42,
+                "code": "SC",
+                "name": "SOUTH CAROLINA",
+                "is_type": "state",
+                "number_of_touches": 5
+              },
+              {
+                "id": 13,
+                "code": "IA",
+                "name": "IOWA",
+                "is_type": "state",
+                "number_of_touches": 4
+              },
+              {
+                "id": 27,
+                "code": "MT",
+                "name": "MONTANA",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 43,
+                "code": "SD",
+                "name": "SOUTH DAKOTA",
+                "is_type": "state",
+                "number_of_touches": 12
+              },
+              {
+                "id": 21,
+                "code": "MD",
+                "name": "MARYLAND",
+                "is_type": "state",
+                "number_of_touches": 3
+              },
+              {
+                "id": 19,
+                "code": "LA",
+                "name": "LOUISIANA",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 44,
+                "code": "TN",
+                "name": "TENNESSEE",
+                "is_type": "state",
+                "number_of_touches": 2
+              },
+              {
+                "id": 25,
+                "code": "MO",
+                "name": "MISSOURI",
+                "is_type": "state",
+                "number_of_touches": 1
+              },
+              {
+                "id": 36,
+                "code": "OH",
+                "name": "OHIO",
+                "is_type": "state",
+                "number_of_touches": 8
+              }
+            ]
+          },
+          "by_country": {
+            "preferred_areas": [],
+            "terminal_or_headquarter_areas": [
+              {
+                "id": 55113,
+                "code": "US",
+                "name": "UNITED STATES",
+                "is_type": "country"
+              }
+            ],
+            "historical_presence_areas": []
+          }
+        },
+        "integrations": null,
+        "insights": [
+          {
+            "title": "Reused Contact",
+            "message": "Three other carriers have contact names matching this carrier."
+          },
+          {
+            "title": "Only Accessed From Outside North America",
+            "message": "Users of this carrier have only accessed from countries outside North America.  The list of countries from which users have accessed Highway are Guatemala."
+          },
+          {
+            "title": "Broker Authority Nearby",
+            "message": "A broker authority is located within a quarter-mile of this carrier's physical addresses which is categorized as a residence."
+          },
+          {
+            "title": "Residential Address",
+            "message": "This carrier reports to have ten or more trucks and one of the carrier's listed addresses is categorized residential."
+          }
+        ],
+        "bluewires": []
+      }
+    ]
+  ],
+  "mcSearch": []
+}
