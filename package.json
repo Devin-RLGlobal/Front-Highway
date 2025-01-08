@@ -10,6 +10,7 @@
     "@frontapp/plugin-sdk": "^1.8.1",
     "axios": "*",
     "body-parser": "*",
+    "crypto": "*",
     "dotenv": "*",
     "express": "*",
     "express-handlebars": "*",
