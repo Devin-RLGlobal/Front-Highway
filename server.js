@@ -162,12 +162,15 @@ app.post('/highway', async (req, res) => {
 
     const dotResponses = otherResponses.slice(0, dotConfigs.length);
     const mcResponses = otherResponses.slice(dotConfigs.length);
-    const combinedData = {
-      emailSearch: emailResponse.data,
-      dotSearch: dotResponses.map(res => res.data),
-      mcSearch: mcResponses.map(res => res.data)
-    };
-    console.log(combinedData.toString('utf-8'))
+      const combinedData = {
+        emailSearch: emailResponse.data,
+        dotSearch: dotResponses.map(res => res.data),
+        mcSearch: mcResponses.map(res => res.data)
+      };
+      console.log(JSON.stringify(combinedData["emailSearch"], null, 2));
+      console.log(JSON.stringify(combinedData["dotSearch"], null, 2));
+      console.log(JSON.stringify(combinedData["mcSearch"], null, 2));
+
     res.status(200).json(combinedData);
 
   } catch (error) {
