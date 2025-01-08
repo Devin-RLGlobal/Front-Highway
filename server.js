@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 require('dotenv').config();
 const qs = require('qs');
+const crypto = require('crypto');
 
 const app = express();
+
 
 app.use(bodyParser.json());
 
@@ -16,24 +18,86 @@ app.set('views', __dirname + '/src/pages');
 
 app.use(express.static('public'));
 
+
+function verifySignature(req){
+  try {
+    const signature = req.headers['x-front-signature'];
+    const xFrontChallenge = req.headers['x-front-challenge'];
+    const timestamp = req.headers['x-front-request-timestamp'] + ':';
+    const rawBody = req.body; 
+
+    const concatenated = Buffer.concat([Buffer.from(timestamp, 'utf-8'), rawBody]);
+    const hashed = crypto
+        .createHmac('sha256', applicationSecret)
+        .update(concatenated)
+        .digest('base64');
+
+    if (hashed === signature) {
+        res.status(200).send(xFrontChallenge); 
+    } else {
+        res.status(400).send('Bad Request: validation failed');
+    }
+} catch (error) {
+    console.error('Error processing webhook:', error);
+    res.status(500).send('Internal Server Error');
+}
+
+  
+}
+
+
 app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
 });
 
 app.post('/webhook', (req, res) => {
-  console.log('Webhook hit at:', new Date().toISOString());
-  console.log('Payload:', req.body);
-  console.log('Headers:', req.headers)
+  try {
+    const signature = req.headers['x-front-signature'];
+    const xFrontChallenge = req.headers['x-front-challenge'];
+    const timestamp = req.headers['x-front-request-timestamp'] + ':';
+    const rawBody = req.body; 
 
-  res.status(200).send('Webhook received!');
+    const concatenated = Buffer.concat([Buffer.from(timestamp, 'utf-8'), rawBody]);
+    const hashed = crypto
+        .createHmac('sha256', applicationSecret)
+        .update(concatenated)
+        .digest('base64');
+
+    if (hashed === signature) {
+        res.status(200).send(xFrontChallenge); 
+    } else {
+        res.status(400).send('Bad Request: validation failed');
+    }
+} catch (error) {
+    console.error('Error processing webhook:', error);
+    res.status(500).send('Internal Server Error');
+}
+
 });
 
 app.get('/webhook', (req, res) => {
-  console.log('Webhook hit at:', new Date().toISOString());
-  console.log('Payload:', req.body);
-  console.log('Headers:', req.headers)
+  try {
+    const signature = req.headers['x-front-signature'];
+    const xFrontChallenge = req.headers['x-front-challenge'];
+    const timestamp = req.headers['x-front-request-timestamp'] + ':';
+    const rawBody = req.body; 
 
-  res.status(200).send('Webhook received!');
+    const concatenated = Buffer.concat([Buffer.from(timestamp, 'utf-8'), rawBody]);
+    const hashed = crypto
+        .createHmac('sha256', applicationSecret)
+        .update(concatenated)
+        .digest('base64');
+
+    if (hashed === signature) {
+        res.status(200).send(xFrontChallenge); 
+    } else {
+        res.status(400).send('Bad Request: validation failed');
+    }
+} catch (error) {
+    console.error('Error processing webhook:', error);
+    res.status(500).send('Internal Server Error');
+}
+
 });
 
 app.post('/email', async (req, res) => {
