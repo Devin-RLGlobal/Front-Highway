@@ -10,14 +10,14 @@ const app = express();
 
 
 app.use(bodyParser.json());
-
+app.use(bodyParser.raw({ type: '*/*' }));
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/src/pages');
 
 app.use(express.static('public'));
-app.use(bodyParser.raw({ type: '*/*' }));
+
 
 const applicationSecret = process.env.FRONTSECRET;
 
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
 });
 
-app.post('/webhook', (req, res) => {
+app.post('/webhook', bodyParser.raw({ type: '*/*' }), (req, res) => {
   try {
     const signature = req.headers['x-front-signature'];
     const xFrontChallenge = req.headers['x-front-challenge'];
@@ -50,7 +50,7 @@ app.post('/webhook', (req, res) => {
 
 });
 
-app.get('/webhook', (req, res) => {
+app.get('/webhook', bodyParser.raw({ type: '*/*' }), (req, res) => {
   try {
     const signature = req.headers['x-front-signature'];
     const xFrontChallenge = req.headers['x-front-challenge'];
