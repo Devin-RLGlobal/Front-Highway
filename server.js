@@ -64,6 +64,7 @@ app.post('/webhook', (req, res) => {
       let dotnums = numResult['dot']
       console.log(mcnums)
       console.log(dotnums)
+      callHighway({email: senderEmail, mc: mcnums, dot: dotnums})
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
         res.status(200).json({ challenge: xFrontChallenge });
@@ -91,9 +92,30 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
 });
 
+async function callHighway(reqData) {
+  try {
+      // Make a POST request to /email route
+      const response = await axios.post('http://localhost:3000/highway', reqData, {
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
 
+      // Check if the response status is successful
+      if (response.status !== 200) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
-app.post('/email', async (req, res) => {
+      // Return the response data
+      return response.data;
+
+  } catch (error) {
+      console.error('Error calling /email route:', error.message);
+      throw error; // Rethrow the error
+  }
+}
+
+app.post('/highway', async (req, res) => {
 
   try {
     const { email, mc = [], dot = [] } = req.body;
@@ -175,13 +197,8 @@ function searchDOTNumbers(body) {
   try {
       let mcNums = [];
       let dotNums = [];
-      
-      
-
       mcNums.push(...searchMCNumbers(data));
       dotNums.push(...searchDOTNumbers(data));
-
-
       return { mc: mcNums, dot: dotNums };
   } catch (error) {
       console.error(error);
