@@ -10,7 +10,6 @@ const app = express();
 
 
 app.use(bodyParser.json());
-app.use(bodyParser.raw({ type: '*/*' }));
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
 
 app.set('view engine', 'hbs');
