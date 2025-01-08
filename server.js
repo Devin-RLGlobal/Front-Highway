@@ -178,8 +178,8 @@ function searchDOTNumbers(body) {
       
       
 
-      mcNums.push(searchMCNumbers(data));
-      dotNums.push(searchDOTNumbers(data));
+      mcNums.push(...searchMCNumbers(data));
+      dotNums.push(...searchDOTNumbers(data));
 
 
       return { mc: mcNums, dot: dotNums };
