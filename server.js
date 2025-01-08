@@ -95,7 +95,7 @@ app.get('/', (req, res) => {
 async function callHighway(reqData) {
   try {
       // Make a POST request to /email route
-      const response = await axios.post('http://localhost:3000/highway', reqData, {
+      const response = await axios.post('https://dolphin-app-w5254.ondigitalocean.app/highway', reqData, {
           headers: {
               'Content-Type': 'application/json',
           },
