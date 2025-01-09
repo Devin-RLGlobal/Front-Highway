@@ -72,25 +72,25 @@
       const data = event.detail?.dotSearch?.[0]?.[0] || {}; 
 
       const filteredData = {
-        Title: data.legal_name ?? "N/A",
-        Description: data.authority_assessment?.rating ?? "N/A",
-        OverallResult: data.rules_assessment?.overall_result ?? "N/A",
-        SafetyRating: data.safety?.safety_rating ?? "N/A",
-        ContractStatus: data.authority?.authorities?.contract_authority_status ?? "N/A",
-        CommonStatus: data.authority?.authorities?.common_authority_status ?? "N/A",
-        BrokerStatus: data.authority?.authorities?.broker_authority_status ?? "N/A",
-        ConnectionStatus: data.connection ?? "N/A",
-        CarrierID: data.dot_number ?? "N/A",
-        LegalName: data.legal_name ?? "N/A",
-        MCNumber: data.mc_number ?? "N/A",
-        DOTNumber: data.dot_number ?? "N/A",
-        Address: `${data.addresses?.[0]?.street1 ?? "N/A"}, ${data.addresses?.[0]?.city ?? "N/A"}, ${data.addresses?.[0]?.state ?? "N/A"} ${data.addresses?.[0]?.postal_code ?? "N/A"}`,
-        DispatchPhone: data.contact_information?.dispatch_contact?.phone ?? "N/A",
-        DispatchEmail: data.contact_information?.dispatch_contact?.email_address ?? "N/A"
-      };
+    Title: data.legal_name ?? "N/A",
+    Description: data.authority_assessment?.rating ?? "N/A",
+    OverallResult: data.rules_assessment?.overall_result ?? "N/A",
+    SafetyRating: data.safety?.safety_rating ?? "N/A",
+    ContractStatus: data.authority?.authorities?.contract_authority_status ?? "N/A",
+    CommonStatus: data.authority?.authorities?.common_authority_status ?? "N/A",
+    BrokerStatus: data.authority?.authorities?.broker_authority_status ?? "N/A",
+    ConnectionStatus: data.connection ?? "N/A",
+    CarrierID: data.dot_number ?? "N/A",
+    LegalName: data.legal_name ?? "N/A",
+    MCNumber: data.mc_number ?? "N/A",
+    DOTNumber: data.dot_number ?? "N/A",
+    Address: `${data.addresses?.[0]?.street1 ?? "N/A"}, ${data.addresses?.[0]?.city ?? "N/A"}, ${data.addresses?.[0]?.state ?? "N/A"} ${data.addresses?.[0]?.postal_code ?? "N/A"}`,
+    DispatchPhone: data.contact_information?.dispatch_contact?.phone ?? "N/A",
+    DispatchEmail: data.contact_information?.dispatch_contact?.email_address ?? "N/A"
+  };
 
       for (const [key, value] of Object.entries(filteredData)) {
-        document.getElementById(key.toLowerCase()).innerText = value;
+        document.getElementById(key.toLowerCase()).innerHTML = value;
       }
     });
 
