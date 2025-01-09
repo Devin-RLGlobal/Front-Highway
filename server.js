@@ -67,26 +67,37 @@ app.post('/webhook', (req, res) => {
       let numResult = getNumbers(plainTextBody)
       let mcnums = numResult['mc']
       let dotnums = numResult['dot']
-      if(checkDomain() == false){
-        let config = {
-          method: 'get',
-          maxBodyLength: Infinity,
-          url: 'https://api2.frontapp.com/conversations/cnv_123/tags',
-          headers: { 
-            'Authorization': process.env.FRONTAPITOKEN
-          }
-        };
-        
-        axios.request(config)
-        .then((response) => {
-          console.log(JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        
-        console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
+      const conversationId = data.payload.conversation.id;
 
+      if(checkDomain() == false){
+        console.log(conversationId);
+        const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
+        const options = {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify({tag_ids: ['tag_4yeuak']})
+        };
+
+        fetch(url, options)
+          .then(res => res.json())
+          .then(json => console.log(json))
+          .catch(err => console.error(err));
+        
+        // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
+
+      }
+      else{
+        const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
+        const options = {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify({tag_ids: ['tag_4yeucc']})
+        };
+
+        fetch(url, options)
+          .then(res => res.json())
+          .then(json => console.log(json))
+          .catch(err => console.error(err));
       }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
