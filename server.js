@@ -6,9 +6,7 @@ require('dotenv').config();
 const qs = require('qs');
 const crypto = require('crypto');
 const fs = require('fs');
-const Front = require('@frontapp/front');
 
-const front = new Front(process.env.FRONTAPITOKEN);
 
 const app = express();
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
@@ -63,17 +61,30 @@ app.post('/webhook', (req, res) => {
       const senderEmail = sender ? sender.handle : 'Unknown';
 
       const plainTextBody = data.text || 'No plain text body';
-      const htmlBody = data.body || 'No HTML body';
 
       console.log('Sender Email:', senderEmail);
       console.log('Plain Text Body:', plainTextBody);
-      console.log('HTML Body:', htmlBody);
       let numResult = getNumbers(plainTextBody)
       let mcnums = numResult['mc']
       let dotnums = numResult['dot']
-      console.log(mcnums)
-      console.log(dotnums)
       if(checkDomain() == false){
+        let config = {
+          method: 'get',
+          maxBodyLength: Infinity,
+          url: 'https://api2.frontapp.com/conversations/cnv_123/tags',
+          headers: { 
+            'Authorization': process.env.FRONTAPITOKEN
+          }
+        };
+        
+        axios.request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        
         console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
 
       }
