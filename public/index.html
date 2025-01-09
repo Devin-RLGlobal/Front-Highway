@@ -15,7 +15,55 @@
   <div class="d-flex justify-content-center mb-4">
     <button id="move-email-btn" class="btn btn-primary">Quarantine Email</button>
   </div>
-  <div id="highway-data" class="border p-3 rounded bg-light"></div>
+  <div id="highway-data" class="border p-4 rounded bg-light shadow-sm">
+    <h5 class="mb-3">Highway Data</h5>
+    <dl class="row">
+      <dt class="col-sm-4">Title</dt>
+      <dd class="col-sm-8" id="title">N/A</dd>
+
+      <dt class="col-sm-4">Description</dt>
+      <dd class="col-sm-8" id="description">N/A</dd>
+
+      <dt class="col-sm-4">Overall Result</dt>
+      <dd class="col-sm-8" id="overallResult">N/A</dd>
+
+      <dt class="col-sm-4">Safety Rating</dt>
+      <dd class="col-sm-8" id="safetyRating">N/A</dd>
+
+      <dt class="col-sm-4">Contract Status</dt>
+      <dd class="col-sm-8" id="contractStatus">N/A</dd>
+
+      <dt class="col-sm-4">Common Status</dt>
+      <dd class="col-sm-8" id="commonStatus">N/A</dd>
+
+      <dt class="col-sm-4">Broker Status</dt>
+      <dd class="col-sm-8" id="brokerStatus">N/A</dd>
+
+      <dt class="col-sm-4">Connection Status</dt>
+      <dd class="col-sm-8" id="connectionStatus">N/A</dd>
+
+      <dt class="col-sm-4">Carrier ID</dt>
+      <dd class="col-sm-8" id="carrierID">N/A</dd>
+
+      <dt class="col-sm-4">Legal Name</dt>
+      <dd class="col-sm-8" id="legalName">N/A</dd>
+
+      <dt class="col-sm-4">MC Number</dt>
+      <dd class="col-sm-8" id="mcNumber">N/A</dd>
+
+      <dt class="col-sm-4">DOT Number</dt>
+      <dd class="col-sm-8" id="dotNumber">N/A</dd>
+
+      <dt class="col-sm-4">Address</dt>
+      <dd class="col-sm-8" id="address">N/A</dd>
+
+      <dt class="col-sm-4">Dispatch Phone</dt>
+      <dd class="col-sm-8" id="dispatchPhone">N/A</dd>
+
+      <dt class="col-sm-4">Dispatch Email</dt>
+      <dd class="col-sm-8" id="dispatchEmail">N/A</dd>
+    </dl>
+  </div>
   <script src="../src/front.js" type="module"></script>
   <script type="module">
     import { moveEmail } from '../src/front.js';
@@ -41,13 +89,9 @@
         DispatchEmail: data.contact_information?.dispatch_contact?.email_address ?? "N/A"
       };
 
-      let plainText = '';
       for (const [key, value] of Object.entries(filteredData)) {
-        plainText += `${key}: ${value}\n`;
+        document.getElementById(key.toLowerCase()).innerText = value;
       }
-
-      const container = document.getElementById('highway-data');
-      container.innerText = plainText;
     });
 
     document.getElementById('move-email-btn').addEventListener('click', () => {

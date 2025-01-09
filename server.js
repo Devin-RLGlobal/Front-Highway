@@ -6,9 +6,6 @@ require('dotenv').config();
 const qs = require('qs');
 const crypto = require('crypto');
 const fs = require('fs');
-const Front = require('@frontapp/front');
-
-const front = new Front(process.env.FRONTAPITOKEN);
 
 const app = express();
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
