@@ -5,6 +5,7 @@ const axios = require('axios');
 require('dotenv').config();
 const qs = require('qs');
 const crypto = require('crypto');
+const fs = require('fs');
 
 const app = express();
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
@@ -16,6 +17,11 @@ app.use(express.static('public'));
 app.use('/webhook', bodyParser.raw({ type: '*/*' }));
 const applicationSecret = process.env.FRONTSECRET;
 
+
+const rawData = fs.readFileSync('domains.json');
+const { domains } = JSON.parse(rawData);
+
+const domainSet = new Set(domains);
 
 app.post('/webhook', (req, res) => {
   try {
@@ -64,7 +70,10 @@ app.post('/webhook', (req, res) => {
       let dotnums = numResult['dot']
       console.log(mcnums)
       console.log(dotnums)
-      callHighway({email: senderEmail, mc: mcnums, dot: dotnums})
+      if(checkDomain() == false){
+        console.log(callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
+
+      }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
         res.status(200).json({ challenge: xFrontChallenge });
@@ -91,6 +100,13 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
 });
+
+
+
+function checkDomain(domain) {
+    return domainSet.has(domain);
+}
+
 
 async function callHighway(reqData) {
   try {
