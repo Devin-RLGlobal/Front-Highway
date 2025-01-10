@@ -7,6 +7,7 @@ const qs = require('qs');
 const crypto = require('crypto');
 const fs = require('fs');
 
+
 const app = express();
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
 
@@ -60,19 +61,43 @@ app.post('/webhook', (req, res) => {
       const senderEmail = sender ? sender.handle : 'Unknown';
 
       const plainTextBody = data.text || 'No plain text body';
-      const htmlBody = data.body || 'No HTML body';
 
       console.log('Sender Email:', senderEmail);
       console.log('Plain Text Body:', plainTextBody);
-      console.log('HTML Body:', htmlBody);
       let numResult = getNumbers(plainTextBody)
       let mcnums = numResult['mc']
       let dotnums = numResult['dot']
-      console.log(mcnums)
-      console.log(dotnums)
-      if(checkDomain() == false){
-        console.log(callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
+      const conversationId = target.payload.conversation.id;
 
+      if(checkDomain() == false){
+        console.log(conversationId);
+        const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
+        const options = {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify({tag_ids: ['tag_4yeuak']})
+        };
+
+        fetch(url, options)
+          .then(res => res.json())
+          .then(json => console.log(json))
+          .catch(err => console.error(err));
+        
+        // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
+
+      }
+      else{
+        const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
+        const options = {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify({tag_ids: ['tag_4yeucc']})
+        };
+
+        fetch(url, options)
+          .then(res => res.json())
+          .then(json => console.log(json))
+          .catch(err => console.error(err));
       }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
