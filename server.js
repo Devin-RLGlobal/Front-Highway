@@ -70,34 +70,34 @@ app.post('/webhook', (req, res) => {
       const conversationId = target.payload.conversation.id;
 
       if(checkDomain() == false){
-        console.log(conversationId);
-        const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
-        const options = {
-          method: 'POST',
-          headers: {'content-type': 'application/json'},
-          body: JSON.stringify({tag_ids: ['tag_4yeuak']})
-        };
+        // console.log(conversationId);
+        // const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
+        // const options = {
+        //   method: 'POST',
+        //   headers: {'content-type': 'application/json'},
+        //   body: JSON.stringify({tag_ids: ['tag_4yeuak']})
+        // };
 
-        fetch(url, options)
-          .then(res => res.json())
-          .then(json => console.log(json))
-          .catch(err => console.error(err));
+        // fetch(url, options)
+        //   .then(res => res.json())
+        //   .then(json => console.log(json))
+        //   .catch(err => console.error(err));
         
         // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
 
       }
       else{
-        const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
-        const options = {
-          method: 'POST',
-          headers: {'content-type': 'application/json'},
-          body: JSON.stringify({tag_ids: ['tag_4yeucc']})
-        };
+        // const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
+        // const options = {
+        //   method: 'POST',
+        //   headers: {'content-type': 'application/json'},
+        //   body: JSON.stringify({tag_ids: ['tag_4yeucc']})
+        // };
 
-        fetch(url, options)
-          .then(res => res.json())
-          .then(json => console.log(json))
-          .catch(err => console.error(err));
+        // fetch(url, options)
+        //   .then(res => res.json())
+        //   .then(json => console.log(json))
+        //   .catch(err => console.error(err));
       }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
