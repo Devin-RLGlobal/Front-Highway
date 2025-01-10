@@ -1,12 +1,9 @@
 body {
   font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
 }
 
 h1 {
   color: #333;
-}
-
-#highway-data {
-  white-space: pre-wrap;
-  font-family: monospace;
 }
