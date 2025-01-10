@@ -126,6 +126,33 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Front Plugin', message: 'Hello Front!' });
 });
 
+// const fs = require('fs');
+// const filePath = './emailQueue.json';
+
+// if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, JSON.stringify([]));
+
+// function handleWebhook(email) {
+//     const emails = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+//     emails.push({ id: email.id, timestamp: Date.now() });
+//     fs.writeFileSync(filePath, JSON.stringify(emails));
+// }
+
+// setInterval(() => {
+//     const emails = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+//     const now = Date.now();
+//     const remainingEmails = [];
+//     emails.forEach(email => {
+//         if (now - email.timestamp >= 5 * 60 * 1000) {
+//             console.log(`Processing email: ${email.id}`);
+//         } else {
+//             remainingEmails.push(email);
+//         }
+//     });
+//     fs.writeFileSync(filePath, JSON.stringify(remainingEmails));
+// }, 60 * 1000);
+
+// handleWebhook({ id: 'email1', content: 'test1' });
+// handleWebhook({ id: 'email2', content: 'test2' });
 
 
 function checkDomain(domain) {
