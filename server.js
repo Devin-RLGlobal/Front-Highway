@@ -67,6 +67,8 @@ app.post('/webhook', (req, res) => {
       let numResult = getNumbers(plainTextBody)
       let mcnums = numResult['mc']
       let dotnums = numResult['dot']
+      console.log(target.payload)
+
       const conversationId = target.payload.conversation.id;
       
       if(checkDomain() == false){
@@ -102,7 +104,6 @@ app.post('/webhook', (req, res) => {
       }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
-        console.log(target.payload)
         res.status(200).json({ challenge: xFrontChallenge });
       } else if (acceptHeader === 'application/x-www-form-urlencoded') {
         res.status(200).send(`challenge=${xFrontChallenge}`);
