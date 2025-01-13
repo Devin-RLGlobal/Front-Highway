@@ -73,20 +73,20 @@ app.post('/webhook', (req, res) => {
         callMcleod(senderEmail)
                 // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
         console.log(conversationId);
-        const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
+        // const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
 
-        axios.post(url, { tag_ids: ['tag_4yeuak'] }, { headers: { 'Content-Type': 'application/json' } })
-        .then(response => console.log(response.data))
-        .catch(error => console.error(error));
+        // axios.post(url, { tag_ids: ['tag_4yeuak'] }, { headers: { 'Content-Type': 'application/json' } })
+        // .then(response => console.log(response.data))
+        // .catch(error => console.error(error));
         
 
       }
-      else{
-        const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
-        axios.post(url, { tag_ids: ['tag_4yeucc'] }, { headers: { 'Content-Type': 'application/json' } })
-        .then(response => console.log(response.data))
-        .catch(error => console.error(error));
-      }
+      // else{
+      //   const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
+      //   axios.post(url, { tag_ids: ['tag_4yeucc'] }, { headers: { 'Content-Type': 'application/json' } })
+      //   .then(response => console.log(response.data))
+      //   .catch(error => console.error(error));
+      // }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
         res.status(200).json({ challenge: xFrontChallenge });
@@ -145,7 +145,7 @@ async function callMcleod(reqData) {
   console.log("SENDER EMAIL: ", reqData)
   return
   try {
-      const response = await axios.post('https://dolphin-app-w5254.ondigitalocean.app/carriers', reqData, {
+      const response = await axios.get('https://dolphin-app-w5254.ondigitalocean.app/carriers', reqData, {
           headers: {
               'Content-Type': 'application/json',
           },
@@ -237,23 +237,22 @@ app.get("/carriers", async (req, res) => {
   console.log(myquery)
   try {
 
-    const requestOptions = {
-      method: "GET",
-      headers: headers,
-      redirect: "follow",
-    };
-
-    const response = await fetch(
-      `https://servicestruckload.stgextrlc.net/ws/customers/search?email=${encodeURIComponent(myquery)}`,
-      requestOptions
-    );
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch data: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    res.json(result);
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://servicestruckload.stgextrlc.net/ws/customers/search?email='+myquery.email,
+      headers: { 
+        'Authorization': process.env.MCLEODSTAGINGTOKEN
+      }    };
+    
+    axios.request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
