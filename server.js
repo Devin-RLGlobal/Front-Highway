@@ -69,7 +69,7 @@ app.post('/webhook', (req, res) => {
       let dotnums = numResult['dot']
       console.log("PAYLOAD:", payload)
 
-      const conversationId = target.payload.conversation.id;
+      const conversationId = payload.conversation.id;
       
       if(checkDomain() == false){
         callMcleod(senderEmail)
