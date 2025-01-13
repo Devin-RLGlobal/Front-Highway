@@ -67,7 +67,6 @@ app.post('/webhook', (req, res) => {
       let numResult = getNumbers(plainTextBody)
       let mcnums = numResult['mc']
       let dotnums = numResult['dot']
-      console.log("PAYLOAD:", payload)
 
       const conversationId = payload.conversation.id;
       
@@ -75,7 +74,7 @@ app.post('/webhook', (req, res) => {
         callMcleod(senderEmail)
                 // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
         console.log(conversationId);
-        const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
+        const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
         const options = {
           method: 'POST',
           headers: {'content-type': 'application/json'},
@@ -90,7 +89,7 @@ app.post('/webhook', (req, res) => {
 
       }
       else{
-        const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
+        const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
         const options = {
           method: 'POST',
           headers: {'content-type': 'application/json'},
