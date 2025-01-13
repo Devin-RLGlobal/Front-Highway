@@ -26,8 +26,8 @@ const domainSet = new Set(domains);
 
 app.post('/webhook', (req, res) => {
   try {
-    console.log('Headers:', req.headers);
-    console.log('Raw Body:', req.body.toString('utf-8'));
+    // console.log('Headers:', req.headers);
+    // console.log('Raw Body:', req.body.toString('utf-8'));
 
     const signature = req.headers['x-front-signature'];
     const xFrontChallenge = req.headers['x-front-challenge'];
@@ -63,7 +63,7 @@ app.post('/webhook', (req, res) => {
       const plainTextBody = data.text || 'No plain text body';
 
       console.log('Sender Email:', senderEmail);
-      console.log('Plain Text Body:', plainTextBody);
+      // console.log('Plain Text Body:', plainTextBody);
       let numResult = getNumbers(plainTextBody)
       let mcnums = numResult['mc']
       let dotnums = numResult['dot']
