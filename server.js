@@ -70,6 +70,7 @@ app.post('/webhook', (req, res) => {
       const conversationId = target.payload.conversation.id;
 
       if(checkDomain() == false){
+        callMcleod(senderEmail)
                 // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
         console.log(conversationId);
         const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
@@ -154,6 +155,8 @@ async function callHighway(reqData) {
 }
 
 async function callMcleod(reqData) {
+  console.log("SENDER EMAIL: ", reqData)
+  return
   try {
       const response = await axios.post('https://dolphin-app-w5254.ondigitalocean.app/carriers', reqData, {
           headers: {
