@@ -67,7 +67,7 @@ app.post('/webhook', (req, res) => {
       let numResult = getNumbers(plainTextBody)
       let mcnums = numResult['mc']
       let dotnums = numResult['dot']
-      console.log(target.payload)
+      console.log("PAYLOAD:", payload)
 
       const conversationId = target.payload.conversation.id;
       
