@@ -233,9 +233,9 @@ app.post('/highway', async (req, res) => {
         dotSearch: dotResponses.map(res => res.data),
         mcSearch: mcResponses.map(res => res.data)
       };
-      console.log(JSON.stringify(combinedData["emailSearch"], null, 2));
-      console.log(JSON.stringify(combinedData["dotSearch"], null, 2));
-      console.log(JSON.stringify(combinedData["mcSearch"], null, 2));
+      // console.log(JSON.stringify(combinedData["emailSearch"], null, 2));
+      // console.log(JSON.stringify(combinedData["dotSearch"], null, 2));
+      // console.log(JSON.stringify(combinedData["mcSearch"], null, 2));
 
     res.status(200).json(combinedData);
 
