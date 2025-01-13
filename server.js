@@ -68,7 +68,7 @@ app.post('/webhook', (req, res) => {
       let mcnums = numResult['mc']
       let dotnums = numResult['dot']
       const conversationId = target.payload.conversation.id;
-
+      
       if(checkDomain() == false){
         callMcleod(senderEmail)
                 // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
@@ -102,6 +102,7 @@ app.post('/webhook', (req, res) => {
       }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
+        console.log(target.payload)
         res.status(200).json({ challenge: xFrontChallenge });
       } else if (acceptHeader === 'application/x-www-form-urlencoded') {
         res.status(200).send(`challenge=${xFrontChallenge}`);
