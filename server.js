@@ -62,7 +62,6 @@ app.post('/webhook', (req, res) => {
 
       const plainTextBody = data.text || 'No plain text body';
 
-      console.log('Sender Email:', senderEmail);
       // console.log('Plain Text Body:', plainTextBody);
       let numResult = getNumbers(plainTextBody)
       let mcnums = numResult['mc']
@@ -75,31 +74,18 @@ app.post('/webhook', (req, res) => {
                 // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
         console.log(conversationId);
         const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
-        const options = {
-          method: 'POST',
-          headers: {'content-type': 'application/json'},
-          body: JSON.stringify({tag_ids: ['tag_4yeuak']})
-        };
 
-        fetch(url, options)
-          .then(res => res.json())
-          .then(json => console.log(json))
-          .catch(err => console.error(err));
+        axios.post(url, { tag_ids: ['tag_4yeuak'] }, { headers: { 'Content-Type': 'application/json' } })
+        .then(response => console.log(response.data))
+        .catch(error => console.error(error));
         
 
       }
       else{
         const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
-        const options = {
-          method: 'POST',
-          headers: {'content-type': 'application/json'},
-          body: JSON.stringify({tag_ids: ['tag_4yeucc']})
-        };
-
-        fetch(url, options)
-          .then(res => res.json())
-          .then(json => console.log(json))
-          .catch(err => console.error(err));
+        axios.post(url, { tag_ids: ['tag_4yeucc'] }, { headers: { 'Content-Type': 'application/json' } })
+        .then(response => console.log(response.data))
+        .catch(error => console.error(error));
       }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
