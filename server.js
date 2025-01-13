@@ -70,6 +70,7 @@ app.post('/webhook', (req, res) => {
       const conversationId = target.payload.conversation.id;
 
       if(checkDomain() == false){
+                // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
         console.log(conversationId);
         const url = `https://api2.frontapp.com/conversations/`+conversation_id+`/tags`;
         const options = {
@@ -83,7 +84,6 @@ app.post('/webhook', (req, res) => {
           .then(json => console.log(json))
           .catch(err => console.error(err));
         
-        // console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
 
       }
       else{
@@ -153,6 +153,28 @@ async function callHighway(reqData) {
   }
 }
 
+async function callMcleod(reqData) {
+  try {
+      const response = await axios.post('https://dolphin-app-w5254.ondigitalocean.app/carriers', reqData, {
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
+
+      if (response.status !== 200) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      return response.data;
+
+  } catch (error) {
+      console.error('Error calling /email route:', error.message);
+      throw error; 
+  }
+}
+
+
+
 app.post('/highway', async (req, res) => {
 
   try {
@@ -219,6 +241,34 @@ app.post('/highway', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
+
+app.get("/carriers", async (req, res) => {
+  const { myquery } = req.query; 
+  console.log(myquery)
+  try {
+
+    const requestOptions = {
+      method: "GET",
+      headers: headers,
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      `https://servicestruckload.stgextrlc.net/ws/customers/search?email=${encodeURIComponent(myquery)}`,
+      requestOptions
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 function searchMCNumbers(body) {
   const regex = /MC\d+/g;
 
