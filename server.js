@@ -250,10 +250,8 @@ app.get("/carriers", async (req, res) => {
     headers: { 
       'Accept': 'application/json', 
       'X-com.mcleodsoftware.CompanyID': 'TMS', 
-      'Authorization': 'Token ' + process.env.MCLEODSTAGINGTOKEN, 
-      ...data.getHeaders()
+      'Authorization': 'Token ' + process.env.MCLEODSTAGINGTOKEN
     },
-    data : data
   };
   
   axios.request(config)
