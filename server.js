@@ -142,31 +142,29 @@ async function callHighway(reqData) {
 }
 
 async function callMcleod(reqData) {
-  console.log("SENDER EMAIL: ", reqData)
+  console.log("SENDER EMAIL: ", reqData);
 
   const FormData = require('form-data');
   let data = new FormData();
   data.append('email', reqData);
-  
-  let config = {
-    method: 'get',
-    maxBodyLength: Infinity,
-    url: 'https://dolphin-app-w5254.ondigitalocean.app/carriers',
-    headers: { 
-      ...data.getHeaders()
-    },
-    data : data
-  };
-  
-  axios.request(config)
-  .then((response) => {
+
+  try {
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://dolphin-app-w5254.ondigitalocean.app/carriers',
+      data: data,
+      headers: data.getHeaders(),
+    };
+    const response = await axios.request(config);
     console.log(JSON.stringify(response.data));
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-  
+    return response.data; 
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
+
 
 
 
@@ -236,33 +234,27 @@ app.post('/highway', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
-
 app.get("/carriers", async (req, res) => {
   const { myquery } = req.query; 
-  console.log(myquery)
-  const FormData = require('form-data');
-  let data = new FormData();
-  
-  let config = {
-    method: 'get',
-    maxBodyLength: Infinity,
-    url: 'https://servicestruckload.stgextrlc.net/ws/carriers/search?id=VOLRAK',
-    headers: { 
-      'Accept': 'application/json', 
-      'X-com.mcleodsoftware.CompanyID': 'TMS', 
-      'Authorization': 'Token ' + process.env.MCLEODSTAGINGTOKEN
-    },
+  console.log("Query:", myquery);
+
+  const url = 'https://servicestruckload.stgextrlc.net/ws/carriers/search?id=VOLRAK';
+  const headers = {
+    Accept: 'application/json',
+    'X-com.mcleodsoftware.CompanyID': 'TMS',
+    Authorization: 'Token ' + process.env.MCLEODSTAGINGTOKEN,
   };
-  
-  axios.request(config)
-  .then((response) => {
-    console.log(JSON.stringify(response.data));
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-  
+
+  try {
+    const response = await axios.get(url, { headers });
+    console.log("Response Data:", response.data);
+    res.status(200).json(response.data); 
+  } catch (error) {
+    console.error(error);
+    res.status(error.response?.status || 500).json({ error: error.message });
+  }
 });
+
 
 function searchMCNumbers(body) {
   const regex = /MC\d+/g;
