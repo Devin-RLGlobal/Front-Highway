@@ -143,7 +143,7 @@ async function callHighway(reqData) {
 
 async function callMcleod(reqData) {
   console.log("SENDER EMAIL: ", reqData)
-  return
+  
   try {
       const response = await axios.get('https://dolphin-app-w5254.ondigitalocean.app/carriers', reqData, {
           headers: {
@@ -235,27 +235,30 @@ app.post('/highway', async (req, res) => {
 app.get("/carriers", async (req, res) => {
   const { myquery } = req.query; 
   console.log(myquery)
-  try {
-
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'https://servicestruckload.stgextrlc.net/ws/customers/search?email='+myquery.email,
-      headers: { 
-        'Authorization': process.env.MCLEODSTAGINGTOKEN
-      }    };
-    
-    axios.request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const FormData = require('form-data');
+  let data = new FormData();
+  
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'https://servicestruckload.stgextrlc.net/ws/carriers/search?id=VOLRAK',
+    headers: { 
+      'Accept': 'application/json', 
+      'X-com.mcleodsoftware.CompanyID': 'TMS', 
+      'Authorization': 'Token ' + process.env.MCLEODSTAGINGTOKEN, 
+      ...data.getHeaders()
+    },
+    data : data
+  };
+  
+  axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  
 });
 
 function searchMCNumbers(body) {
