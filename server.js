@@ -143,24 +143,21 @@ async function callHighway(reqData) {
 
 async function callMcleod(reqData) {
   console.log("SENDER EMAIL: ", reqData)
+
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'https://dolphin-app-w5254.ondigitalocean.app/carriers',
+  };
   
-  try {
-      const response = await axios.get('https://dolphin-app-w5254.ondigitalocean.app/carriers', reqData, {
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      });
-
-      if (response.status !== 200) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      return response.data;
-
-  } catch (error) {
-      console.error('Error calling /email route:', error.message);
-      throw error; 
-  }
+  axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  
 }
 
 
