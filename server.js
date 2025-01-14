@@ -67,21 +67,21 @@ app.post('/webhook', async (req, res) => {
 
       if (!checkDomain() && await callMcleod(senderEmail) == false &&  await callHighway({ email: senderEmail, mc: mcnums, dot: dotnums }) == false){
 
-        const url = 'https://api2.frontapp.com/conversations/cnv_1efb5nmk/tags';
+
         const options = {
           method: 'POST',
+          url: 'https://api2.frontapp.com/conversations/cnv_1efb5nmk/tags',
           headers: {
             'content-type': 'application/json',
             authorization: 'Bearer ' + process.env.FRONTAPITOKEN
           },
-          body: JSON.stringify({tag_ids: ['tag_4yeuak']})
+          data: {tag_ids: ['tag_4yeuak']}
         };
         
-        fetch(url, options)
-          .then(res => res.json())
-          .then(json => console.log(json))
+        axios
+          .request(options)
+          .then(res => console.log(res.data))
           .catch(err => console.error(err));
-        
 
       }
 
