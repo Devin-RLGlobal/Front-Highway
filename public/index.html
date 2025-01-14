@@ -72,21 +72,21 @@
       const data = event.detail?.dotSearch?.[0]?.[0] || {}; 
       console.log(data)
       const filteredData = {
-    Title: data.legal_name ?? "N/A",
-    Description: data.authority_assessment?.rating ?? "N/A",
-    OverallResult: data.rules_assessment?.overall_result ?? "N/A",
-    SafetyRating: data.safety?.safety_rating ?? "N/A",
-    ContractStatus: data.authority?.authorities?.contract_authority_status ?? "N/A",
-    CommonStatus: data.authority?.authorities?.common_authority_status ?? "N/A",
-    BrokerStatus: data.authority?.authorities?.broker_authority_status ?? "N/A",
-    ConnectionStatus: data.connection ?? "N/A",
-    CarrierID: data.dot_number ?? "N/A",
-    LegalName: data.legal_name ?? "N/A",
-    MCNumber: data.mc_number ?? "N/A",
-    DOTNumber: data.dot_number ?? "N/A",
-    Address: `${data.addresses?.[0]?.street1 ?? "N/A"}, ${data.addresses?.[0]?.city ?? "N/A"}, ${data.addresses?.[0]?.state ?? "N/A"} ${data.addresses?.[0]?.postal_code ?? "N/A"}`,
-    DispatchPhone: data.contact_information?.dispatch_contact?.phone ?? "N/A",
-    DispatchEmail: data.contact_information?.dispatch_contact?.email_address ?? "N/A"
+    title: data.legal_name ?? "N/A",
+    description: data.authority_assessment?.rating ?? "N/A",
+    overallResult: data.rules_assessment?.overall_result ?? "N/A",
+    safetyrating: data.safety?.safety_rating ?? "N/A",
+    contractstatus: data.authority?.authorities?.contract_authority_status ?? "N/A",
+    commonstatus: data.authority?.authorities?.common_authority_status ?? "N/A",
+    brokerstatus: data.authority?.authorities?.broker_authority_status ?? "N/A",
+    connectionstatus: data.connection ?? "N/A",
+    carrierid: data.dot_number ?? "N/A",
+    legalname: data.legal_name ?? "N/A",
+    mcnumber: data.mc_number ?? "N/A",
+    dotnumber: data.dot_number ?? "N/A",
+    address: `${data.addresses?.[0]?.street1 ?? "N/A"}, ${data.addresses?.[0]?.city ?? "N/A"}, ${data.addresses?.[0]?.state ?? "N/A"} ${data.addresses?.[0]?.postal_code ?? "N/A"}`,
+    dispatchphone: data.contact_information?.dispatch_contact?.phone ?? "N/A",
+    dispatchemail: data.contact_information?.dispatch_contact?.email_address ?? "N/A"
   };
 
   for (const [key, value] of Object.entries(filteredData)) {
