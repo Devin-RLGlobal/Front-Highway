@@ -85,13 +85,22 @@ app.post('/webhook', async (req, res) => {
 
       }
 
-
-      // else{
-      //   const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
-      //   axios.post(url, { tag_ids: ['tag_4yeucc'] }, { headers: { 'Content-Type': 'application/json' } })
-      //   .then(response => console.log(response.data))
-      //   .catch(error => console.error(error));
-      // }
+      else{
+        const options = {
+          method: 'POST',
+          url: 'https://api2.frontapp.com/conversations/cnv_1efb5nmk/tags',
+          headers: {
+            'content-type': 'application/json',
+            authorization: 'Bearer ' + process.env.FRONTAPITOKEN
+          },
+          data: {tag_ids: ['tag_4yeucc']}
+        };
+        
+        axios
+          .request(options)
+          .then(res => console.log(res.data))
+          .catch(err => console.error(err));
+      }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
         return res.status(200).json({ challenge: xFrontChallenge });
