@@ -70,7 +70,7 @@ app.post('/webhook', async (req, res) => {
 
         const options = {
           method: 'POST',
-          url: 'https://api2.frontapp.com/conversations/cnv_1efb5nmk/tags',
+          url: 'https://api2.frontapp.com/conversations/'+conversationId+'/tags',
           headers: {
             'content-type': 'application/json',
             authorization: 'Bearer ' + process.env.FRONTAPITOKEN
@@ -88,7 +88,7 @@ app.post('/webhook', async (req, res) => {
       else{
         const options = {
           method: 'POST',
-          url: 'https://api2.frontapp.com/conversations/cnv_1efb5nmk/tags',
+          url: 'https://api2.frontapp.com/conversations/'+conversationId+'/tags',
           headers: {
             'content-type': 'application/json',
             authorization: 'Bearer ' + process.env.FRONTAPITOKEN
