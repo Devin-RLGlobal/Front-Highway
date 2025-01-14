@@ -131,12 +131,15 @@ async function callHighway(reqData) {
     });
 
     console.log('Highway Response Data:', response.data);
-
+    const data = response.data;
+    if(response.data.emailSearch.email_search_result_category == 'email_and_email_domain_not_known'){
+      return false
+    }
     if (response.status !== 200) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return response.data;
+    return true;
 
   } catch (error) {
     console.error('Error calling /highway route:', error.message);
