@@ -118,6 +118,7 @@ app.get('/', (req, res) => {
 
 
 function checkDomain(domain) {
+    console.log(domainSet.has(domain);)
     return domainSet.has(domain);
 }
 
@@ -132,12 +133,13 @@ async function callHighway(reqData) {
 
     const data = response.data;
     if(response.data.emailSearch.email_search_result_category == 'email_and_email_domain_not_known'){
+      console.log('false')
       return false
     }
     if (response.status !== 200) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
+    console.log(true)
     return true;
 
   } catch (error) {
@@ -166,7 +168,8 @@ async function callMcleod(reqData) {
 
     // console.log("ID:", id);
     // console.log("Is Active:", isActive ? "Yes" : "No");
-    return isActive
+    console.log(isActive ? true : false)
+    return isActive ? true : false
   } catch (error) {
     console.log(error);
   }
