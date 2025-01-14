@@ -69,7 +69,7 @@ app.post('/webhook', (req, res) => {
 
       const conversationId = payload.conversation.id;
       
-      if(checkDomain() == false && callMcleod(senderEmail) && callHighway({email: senderEmail, mc: mcnums, dot: dotnums})){
+      if(checkDomain() == false && callMcleod(senderEmail) == false && callHighway({email: senderEmail, mc: mcnums, dot: dotnums})){
 
 
         console.log(conversationId);
@@ -123,23 +123,26 @@ function checkDomain(domain) {
 
 async function callHighway(reqData) {
   try {
-      const response = await axios.post('https://dolphin-app-w5254.ondigitalocean.app/highway', reqData, {
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      });
+    const response = await axios.post('https://dolphin-app-w5254.ondigitalocean.app/highway', reqData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      if (response.status !== 200) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+    console.log('Highway Response Data:', response.data);
 
-      return response.data;
+    if (response.status !== 200) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.data;
 
   } catch (error) {
-      console.error('Error calling /email route:', error.message);
-      throw error; 
+    console.error('Error calling /highway route:', error.message);
+    throw error;
   }
 }
+
 
 async function callMcleod(reqData) {
   let config = {
@@ -166,68 +169,55 @@ async function callMcleod(reqData) {
   }
 }
 
-
-
-
-
 app.post('/highway', async (req, res) => {
-
   try {
     const { email, mc = [], dot = [] } = req.body;
 
     const cleanMC = mc.map(num => num.replace(/MC/i, '').trim());
     const cleanDOT = dot.map(num => num.replace(/DOT/i, '').trim());
 
-    let data1 = qs.stringify({ 'email': email || 'test@gmail.com' });
-
     let config1 = {
       method: 'post',
       maxBodyLength: Infinity,
       url: 'https://staging.gohighway.com/core/connect/external_api/v1/carriers/email_search_associated_carriers',
-      headers: { 
-        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY, 
+      headers: {
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY,
       },
-      data: data1
+      data: qs.stringify({ email: email || 'test@gmail.com' }),
     };
 
-    const dotConfigs = cleanDOT.map(dotNumber => {
-      return {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`,
-        headers: { 
-          'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
-        }
-      };
-    });
+    const dotConfigs = cleanDOT.map(dotNumber => ({
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${dotNumber}&q[identifiers_is_type_eq]=DOT`,
+      headers: {
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY,
+      },
+    }));
 
-    const mcConfigs = cleanMC.map(mcNumber => {
-      return {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`,
-        headers: { 
-          'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY
-        }
-      };
-    });
+    const mcConfigs = cleanMC.map(mcNumber => ({
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://staging.gohighway.com/core/connect/external_api/v1/carriers?q[identifiers_value_eq]=${mcNumber}&q[identifiers_is_type_eq]=MC`,
+      headers: {
+        'Authorization': 'Bearer ' + process.env.HIGHWAYAPIKEY,
+      },
+    }));
 
     const [emailResponse, ...otherResponses] = await Promise.all([
       axios.request(config1),
       ...dotConfigs.map(config => axios.request(config)),
-      ...mcConfigs.map(config => axios.request(config))
+      ...mcConfigs.map(config => axios.request(config)),
     ]);
 
     const dotResponses = otherResponses.slice(0, dotConfigs.length);
     const mcResponses = otherResponses.slice(dotConfigs.length);
-      const combinedData = {
-        emailSearch: emailResponse.data,
-        dotSearch: dotResponses.map(res => res.data),
-        mcSearch: mcResponses.map(res => res.data)
-      };
-      // console.log(JSON.stringify(combinedData["emailSearch"], null, 2));
-      // console.log(JSON.stringify(combinedData["dotSearch"], null, 2));
-      // console.log(JSON.stringify(combinedData["mcSearch"], null, 2));
+
+    const combinedData = {
+      emailSearch: emailResponse.data,
+      dotSearch: dotResponses.map(res => res.data),
+      mcSearch: mcResponses.map(res => res.data),
+    };
 
     res.status(200).json(combinedData);
 
@@ -236,6 +226,7 @@ app.post('/highway', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
+
 app.post("/carriers", async (req, res) => {
   const { email } = req.body;
   console.log("Received email:", email);
