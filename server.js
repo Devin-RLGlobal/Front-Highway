@@ -68,16 +68,18 @@ app.post('/webhook', (req, res) => {
       let dotnums = numResult['dot']
 
       const conversationId = payload.conversation.id;
-      
-      if(checkDomain() == false){
-        console.log("ez")
-        if(callMcleod(senderEmail) == false){
-          console.log("here2")
-          if(callHighway({email: senderEmail, mc: mcnums, dot: dotnums}) == false){
+      if (checkDomain() == false) {
+        console.log("ez");
+        const mcleodResult = await callMcleod(senderEmail);
+        if (mcleodResult == false) {
+          console.log("here2");
+          const highwayResult = await callHighway({ email: senderEmail, mc: mcnums, dot: dotnums });
+          if (highwayResult == false) {
             console.log(conversationId);
-
           }
         }
+      }
+      
 
          // TAGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
