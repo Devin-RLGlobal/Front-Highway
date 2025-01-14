@@ -144,10 +144,18 @@ async function callHighway(reqData) {
 async function callMcleod(reqData) {
   console.log("SENDER EMAIL: ", reqData)
 
+  const FormData = require('form-data');
+  let data = new FormData();
+  data.append('email', reqData);
+  
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
     url: 'https://dolphin-app-w5254.ondigitalocean.app/carriers',
+    headers: { 
+      ...data.getHeaders()
+    },
+    data : data
   };
   
   axios.request(config)
