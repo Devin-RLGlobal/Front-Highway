@@ -70,7 +70,7 @@ app.post('/webhook', async (req, res) => {
             console.log(conversationId);
             const options = {
               method: 'POST',
-              headers: {'content-type': 'application/json', authorization: 'Bearer ' + process.env.FRONTSECRET}
+              headers: {'content-type': 'application/json', authorization: 'Bearer ' + process.env.FRONTAPITOKEN}
             };
         const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
 
