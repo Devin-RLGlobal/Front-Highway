@@ -144,26 +144,26 @@ async function callHighway(reqData) {
 async function callMcleod(reqData) {
   console.log("SENDER EMAIL: ", reqData);
 
-  const FormData = require('form-data');
-  let data = new FormData();
-  data.append('email', reqData);
+  const axios = require('axios');
+
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://dolphin-app-w5254.ondigitalocean.app/carriers',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: { email: reqData } 
+  };
 
   try {
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'https://dolphin-app-w5254.ondigitalocean.app/carriers',
-      data: data,
-      headers: data.getHeaders(),
-    };
     const response = await axios.request(config);
     console.log(JSON.stringify(response.data));
-    return response.data; 
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.log(error);
   }
 }
+
 
 
 
@@ -234,24 +234,28 @@ app.post('/highway', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data from Highway API' });
   }
 });
-app.get("/carriers", async (req, res) => {
-  const { myquery } = req.query; 
-  console.log("Query:", myquery);
+app.post("/carriers", async (req, res) => {
+  const { email } = req.body;
+  console.log("Received email:", email);
 
-  const url = 'https://servicestruckload.stgextrlc.net/ws/carriers/search?id=VOLRAK';
-  const headers = {
-    Accept: 'application/json',
-    'X-com.mcleodsoftware.CompanyID': 'TMS',
-    Authorization: 'Token ' + process.env.MCLEODSTAGINGTOKEN,
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'https://servicestruckload.stgextrlc.net/ws/carriers/search?id=VOLRAK',
+    headers: { 
+      'Accept': 'application/json', 
+      'X-com.mcleodsoftware.CompanyID': 'TMS', 
+      'Authorization': 'Token ' + process.env.MCLEODSTAGINGTOKEN
+    },
   };
 
   try {
-    const response = await axios.get(url, { headers });
-    console.log("Response Data:", response.data);
-    res.status(200).json(response.data); 
+    const response = await axios.request(config);
+    console.log(JSON.stringify(response.data));
+    res.json(response.data);
   } catch (error) {
     console.error(error);
-    res.status(error.response?.status || 500).json({ error: error.message });
+    res.status(500).json({ error: "An error occurred while processing the request" });
   }
 });
 
