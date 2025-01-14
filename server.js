@@ -65,19 +65,9 @@ app.post('/webhook', async (req, res) => {
 
       const conversationId = payload.conversation.id;
 
-      if (!checkDomain()) {
-        console.log("ez");
+      if (!checkDomain() && await callMcleod(senderEmail) == false &&  await callHighway({ email: senderEmail, mc: mcnums, dot: dotnums })){
 
-        const mcleodResult = await callMcleod(senderEmail);
-        if (!mcleodResult) {
-          console.log("here2");
-
-          const highwayResult = await callHighway({ email: senderEmail, mc: mcnums, dot: dotnums });
-          if (!highwayResult) {
             console.log(conversationId);
-          }
-        }
-      }
 
          // TAGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
@@ -86,6 +76,9 @@ app.post('/webhook', async (req, res) => {
         // .then(response => console.log(response.data))
         // .catch(error => console.error(error));
         
+
+      }
+
 
       // else{
       //   const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
