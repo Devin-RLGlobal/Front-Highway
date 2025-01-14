@@ -24,11 +24,8 @@ const { domains } = JSON.parse(rawData);
 
 const domainSet = new Set(domains);
 
-app.post('/webhook', (req, res) => {
+app.post('/webhook', async (req, res) => {
   try {
-    // console.log('Headers:', req.headers);
-    // console.log('Raw Body:', req.body.toString('utf-8'));
-
     const signature = req.headers['x-front-signature'];
     const xFrontChallenge = req.headers['x-front-challenge'];
     const timestamp = req.headers['x-front-request-timestamp'] + ':';
@@ -62,24 +59,25 @@ app.post('/webhook', (req, res) => {
 
       const plainTextBody = data.text || 'No plain text body';
 
-      // console.log('Plain Text Body:', plainTextBody);
-      let numResult = getNumbers(plainTextBody)
-      let mcnums = numResult['mc']
-      let dotnums = numResult['dot']
+      let numResult = getNumbers(plainTextBody);
+      let mcnums = numResult['mc'];
+      let dotnums = numResult['dot'];
 
       const conversationId = payload.conversation.id;
-      if (checkDomain() == false) {
+
+      if (!checkDomain()) {
         console.log("ez");
+
         const mcleodResult = await callMcleod(senderEmail);
-        if (mcleodResult == false) {
+        if (!mcleodResult) {
           console.log("here2");
+
           const highwayResult = await callHighway({ email: senderEmail, mc: mcnums, dot: dotnums });
-          if (highwayResult == false) {
+          if (!highwayResult) {
             console.log(conversationId);
           }
         }
       }
-      
 
          // TAGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
@@ -89,7 +87,6 @@ app.post('/webhook', (req, res) => {
         // .catch(error => console.error(error));
         
 
-      }
       // else{
       //   const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
       //   axios.post(url, { tag_ids: ['tag_4yeucc'] }, { headers: { 'Content-Type': 'application/json' } })
@@ -98,19 +95,19 @@ app.post('/webhook', (req, res) => {
       // }
       const acceptHeader = req.headers['accept'];
       if (acceptHeader === 'application/json') {
-        res.status(200).json({ challenge: xFrontChallenge });
+        return res.status(200).json({ challenge: xFrontChallenge });
       } else if (acceptHeader === 'application/x-www-form-urlencoded') {
-        res.status(200).send(`challenge=${xFrontChallenge}`);
+        return res.status(200).send(`challenge=${xFrontChallenge}`);
       } else {
-        res.status(200).type('text/plain').send(xFrontChallenge);
+        return res.status(200).type('text/plain').send(xFrontChallenge);
       }
     } else {
       console.error("Signature validation failed");
-      res.status(400).send('Bad Request: validation failed');
+      return res.status(400).send('Bad Request: validation failed');
     }
   } catch (error) {
     console.error('Error processing webhook:', error);
-    res.status(500).send('Internal Server Error');
+    return res.status(500).send('Internal Server Error');
   }
 });
 
