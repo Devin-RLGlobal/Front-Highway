@@ -130,13 +130,11 @@ async function callHighway(reqData) {
 
     const data = response.data;
     if(response.data.emailSearch.email_search_result_category == 'email_and_email_domain_not_known'){
-      console.log('false')
       return false
     }
     if (response.status !== 200) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    console.log(true)
     return true;
 
   } catch (error) {
@@ -163,8 +161,8 @@ async function callMcleod(reqData) {
     const id = data[0].id;
     const isActive = data[0].status === "A";
 
-    console.log("ID:", id);
-    console.log("Is Active:", isActive);
+    // console.log("ID:", id);
+    // console.log("Is Active:", isActive);
     
     return isActive
   } catch (error) {
