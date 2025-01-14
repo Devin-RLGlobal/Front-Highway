@@ -143,9 +143,6 @@ async function callHighway(reqData) {
 
 async function callMcleod(reqData) {
   console.log("SENDER EMAIL: ", reqData);
-
-  const axios = require('axios');
-
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
@@ -158,7 +155,13 @@ async function callMcleod(reqData) {
 
   try {
     const response = await axios.request(config);
-    console.log(JSON.stringify(response.data));
+    const data = response.data;
+    const id = data[0].id;
+    const isActive = data[0].status === "A";
+
+    console.log("ID:", id);
+    console.log("Is Active:", isActive ? "Yes" : "No");
+    // console.log(JSON.stringify(response.data));
   } catch (error) {
     console.log(error);
   }
@@ -251,7 +254,6 @@ app.post("/carriers", async (req, res) => {
 
   try {
     const response = await axios.request(config);
-    console.log(JSON.stringify(response.data));
     res.json(response.data);
   } catch (error) {
     console.error(error);
