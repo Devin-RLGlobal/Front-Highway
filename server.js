@@ -69,10 +69,8 @@ app.post('/webhook', (req, res) => {
 
       const conversationId = payload.conversation.id;
       
-      if(checkDomain() == false){
-        if(callMcleod(senderEmail) == false){
-        }
-        console.log("HIGHWAY DATA:", callHighway({email: senderEmail, mc: mcnums, dot: dotnums}))
+      if(checkDomain() == false && callMcleod(senderEmail) && callHighway({email: senderEmail, mc: mcnums, dot: dotnums})){
+
 
         console.log(conversationId);
         // const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
