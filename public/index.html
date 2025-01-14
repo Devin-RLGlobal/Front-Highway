@@ -70,7 +70,7 @@
 
     window.addEventListener('highwayDataUpdated', (event) => {
       const data = event.detail?.dotSearch?.[0]?.[0] || {}; 
-
+      console.log(data)
       const filteredData = {
     Title: data.legal_name ?? "N/A",
     Description: data.authority_assessment?.rating ?? "N/A",

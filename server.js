@@ -172,7 +172,10 @@ async function callMcleod(reqData) {
 
   try {
     const response = await axios.request(config);
-    const data = response.data;
+    const data = response?.data;
+    if(data == null){
+      return false
+    }
     const id = data[0].id;
     const isActive = data[0].status === "A";
 
