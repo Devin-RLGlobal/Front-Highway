@@ -69,7 +69,7 @@ app.post('/webhook', (req, res) => {
 
       const conversationId = payload.conversation.id;
       
-      if(checkDomain() == false && callMcleod(senderEmail) && callHighway({email: senderEmail, mc: mcnums, dot: dotnums})){
+      if(checkDomain() == false && callMcleod(senderEmail) == false && callHighway({email: senderEmail, mc: mcnums, dot: dotnums}) == false){
 
 
         console.log(conversationId);
@@ -130,7 +130,6 @@ async function callHighway(reqData) {
       },
     });
 
-    console.log('Highway Response Data:', response.data);
     const data = response.data;
     if(response.data.emailSearch.email_search_result_category == 'email_and_email_domain_not_known'){
       return false
@@ -165,9 +164,9 @@ async function callMcleod(reqData) {
     const id = data[0].id;
     const isActive = data[0].status === "A";
 
-    console.log("ID:", id);
-    console.log("Is Active:", isActive ? "Yes" : "No");
-    // console.log(JSON.stringify(response.data));
+    // console.log("ID:", id);
+    // console.log("Is Active:", isActive ? "Yes" : "No");
+    return isActive
   } catch (error) {
     console.log(error);
   }
