@@ -118,7 +118,7 @@ app.get('/', (req, res) => {
 
 
 function checkDomain(domain) {
-    console.log(domainSet.has(domain);)
+    console.log(domainSet.has(domain))
     return domainSet.has(domain);
 }
 
@@ -168,8 +168,8 @@ async function callMcleod(reqData) {
 
     // console.log("ID:", id);
     // console.log("Is Active:", isActive ? "Yes" : "No");
-    console.log(isActive ? true : false)
-    return isActive ? true : false
+    console.log(isActive)
+    return isActive
   } catch (error) {
     console.log(error);
   }
