@@ -69,10 +69,11 @@ app.post('/webhook', (req, res) => {
 
       const conversationId = payload.conversation.id;
       
-      if(checkDomain() == false && callMcleod(senderEmail) == false && callHighway({email: senderEmail, mc: mcnums, dot: dotnums})){
+      if(checkDomain() == false && callMcleod(senderEmail) && callHighway({email: senderEmail, mc: mcnums, dot: dotnums})){
 
 
         console.log(conversationId);
+         // TAGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // const url = `https://api2.frontapp.com/conversations/`+conversationId+`/tags`;
 
         // axios.post(url, { tag_ids: ['tag_4yeuak'] }, { headers: { 'Content-Type': 'application/json' } })
