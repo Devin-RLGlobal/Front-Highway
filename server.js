@@ -198,7 +198,7 @@ async function callMcleod(reqData) {
         headers: {
           Accept: 'application/json',
           'X-com.mcleodsoftware.CompanyID': 'TMS',
-          Authorization: 'Token 0392833a-76cb-4ccc-9d61-ccf3ba49ef86',
+          Authorization: 'Token ' + process.env.FRONTAPITOKEN,
           ...formData.getHeaders(),
         },
         data: formData,
