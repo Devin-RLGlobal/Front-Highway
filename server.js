@@ -26,6 +26,7 @@ const domainSet = new Set(domains);
 
 app.post('/webhook', async (req, res) => {
   try {
+    console.log(domainSet)
     const signature = req.headers['x-front-signature'];
     const xFrontChallenge = req.headers['x-front-challenge'];
     const timestamp = req.headers['x-front-request-timestamp'] + ':';
