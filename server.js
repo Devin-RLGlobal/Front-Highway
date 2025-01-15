@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const FormData = require('form-data');
 require('dotenv').config();
 const qs = require('qs');
 const crypto = require('crypto');
@@ -160,33 +161,71 @@ async function callHighway(reqData) {
 
 
 async function callMcleod(reqData) {
+  let isActive = false;
+  let firstResponseData = null;
+  let secondResponseData = null;
+
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
     url: 'https://dolphin-app-w5254.ondigitalocean.app/carriers',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    data: { email: reqData } 
+    data: { email: reqData },
   };
 
   try {
     const response = await axios.request(config);
-    const data = response?.data;
-    if(data == null){
-      return false
-    }
-    const id = data[0].id;
-    const isActive = data[0].status === "A";
+    firstResponseData = response?.data;
 
-    // console.log("ID:", id);
-    // console.log("Is Active:", isActive);
-    
-    return isActive
+    if (!firstResponseData || firstResponseData.length === 0) {
+      return { isActive: false, firstResponseData, secondResponseData };
+    }
+
+    const id = firstResponseData[0].id;
+    isActive = firstResponseData[0].status === 'A';
+
+    console.log('ID:', id);
+    console.log('Is Active after first request:', isActive);
+
+    if (!isActive) {
+      let formData = new FormData();
+      let secondConfig = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: `https://servicestruckload.stgextrlc.net/ws/contact/search?email=${reqData}`,
+        headers: {
+          Accept: 'application/json',
+          'X-com.mcleodsoftware.CompanyID': 'TMS',
+          Authorization: 'Token 0392833a-76cb-4ccc-9d61-ccf3ba49ef86',
+          ...formData.getHeaders(),
+        },
+        data: formData,
+      };
+
+      try {
+        const secondResponse = await axios.request(secondConfig);
+        secondResponseData = secondResponse?.data;
+
+        if (Object.keys(secondResponseData).length === 0) {
+          isActive = false;
+        }
+
+        console.log('Second Request Data:', JSON.stringify(secondResponseData));
+      } catch (secondError) {
+        console.log('Error in second request:', secondError);
+      }
+    }
+
+    return { isActive, firstResponseData, secondResponseData };
   } catch (error) {
-    console.log(error);
+    console.log('Error in callMcleod:', error);
+    return { isActive: false, firstResponseData, secondResponseData };
   }
 }
+
+
 
 app.post('/highway', async (req, res) => {
   try {
