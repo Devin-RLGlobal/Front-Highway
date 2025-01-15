@@ -65,7 +65,7 @@ app.post('/webhook', async (req, res) => {
 
       const conversationId = payload.conversation.id;
 
-      if (!checkDomain() && await callMcleod(senderEmail) == false &&  await callHighway({ email: senderEmail, mc: mcnums, dot: dotnums }) == false){
+      if (checkDomain() == false && await callMcleod(senderEmail) == false &&  await callHighway({ email: senderEmail, mc: mcnums, dot: dotnums }) == false){
 
 
         const options = {
