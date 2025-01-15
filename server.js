@@ -163,9 +163,10 @@ async function callHighway(reqData) {
 async function callMcleod(reqData) {
   let isActive = false;
   let firstResponseData = null;
-  let secondResponseData = null;
+  let carriersResponseData = null;
+  let contactsResponseData = null;
 
-  let config = {
+  let firstConfig = {
     method: 'post',
     maxBodyLength: Infinity,
     url: 'https://dolphin-app-w5254.ondigitalocean.app/carriers',
@@ -176,54 +177,66 @@ async function callMcleod(reqData) {
   };
 
   try {
-    const response = await axios.request(config);
+    const response = await axios.request(firstConfig);
     firstResponseData = response?.data;
 
-    if (!firstResponseData || firstResponseData.length === 0) {
-      return { isActive: false, firstResponseData, secondResponseData };
+    if (firstResponseData && firstResponseData.length > 0) {
+      const id = firstResponseData[0].id;
+      isActive = firstResponseData[0].status === 'A';
+
+      console.log('ID:', id);
+      console.log('Is Active after first request:', isActive);
+
+      return { isActive, firstResponseData, carriersResponseData, contactsResponseData };
     }
-
-    const id = firstResponseData[0].id;
-    isActive = firstResponseData[0].status === 'A';
-
-    console.log('ID:', id);
-    console.log('Is Active after first request:', isActive);
-
-    if (!isActive) {
-      let formData = new FormData();
-      let secondConfig = {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: `https://servicestruckload.stgextrlc.net/ws/contact/search?email=${reqData}`,
-        headers: {
-          Accept: 'application/json',
-          'X-com.mcleodsoftware.CompanyID': 'TMS',
-          Authorization: 'Token ' + process.env.FRONTAPITOKEN,
-          ...formData.getHeaders(),
-        },
-        data: formData,
-      };
-
-      try {
-        const secondResponse = await axios.request(secondConfig);
-        secondResponseData = secondResponse?.data;
-
-        if (Object.keys(secondResponseData).length === 0) {
-          isActive = false;
-        }
-
-        console.log('Second Request Data:', JSON.stringify(secondResponseData));
-      } catch (secondError) {
-        console.log('Error in second request:', secondError);
-      }
-    }
-
-    return { isActive, firstResponseData, secondResponseData };
   } catch (error) {
-    console.log('Error in callMcleod:', error);
-    return { isActive: false, firstResponseData, secondResponseData };
+    console.log('First request failed:', error);
   }
+
+  let formData = new FormData();
+
+  const getConfig = (type) => ({
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: `https://servicestruckload.stgextrlc.net/ws/${type}/search?email=${reqData}`,
+    headers: {
+      Accept: 'application/json',
+      'X-com.mcleodsoftware.CompanyID': 'TMS',
+      Authorization: 'Token 0392833a-76cb-4ccc-9d61-ccf3ba49ef86',
+      ...formData.getHeaders(),
+    },
+    data: formData,
+  });
+
+  try {
+    const carriersResponse = await axios.request(getConfig('carriers'));
+    carriersResponseData = carriersResponse?.data;
+
+    console.log('Carriers Request Data:', JSON.stringify(carriersResponseData));
+  } catch (error) {
+    console.log('Error in carriers request:', error);
+  }
+
+  try {
+    const contactsResponse = await axios.request(getConfig('contacts'));
+    contactsResponseData = contactsResponse?.data;
+
+    console.log('Contacts Request Data:', JSON.stringify(contactsResponseData));
+  } catch (error) {
+    console.log('Error in contacts request:', error);
+  }
+
+  if (
+    (!carriersResponseData || Object.keys(carriersResponseData).length === 0) &&
+    (!contactsResponseData || Object.keys(contactsResponseData).length === 0)
+  ) {
+    return { isActive: false, firstResponseData, carriersResponseData, contactsResponseData };
+  }
+
+  return { isActive, firstResponseData, carriersResponseData, contactsResponseData };
 }
+
+
 
 
 
