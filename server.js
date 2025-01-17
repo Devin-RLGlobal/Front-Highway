@@ -145,13 +145,13 @@ async function callHighway(reqData) {
     });
 
     const data = response.data;
-    if(response.data.emailSearch.email_search_result_category == 'email_and_email_domain_not_known'){
-      return false
+    if(response.data.emailSearch.email_search_result_category == 'found_email_of_dispatcher_service' || response.data.emailSearch.email_search_result_category == 'found_email_domain_of_carrier_with_identity_alert' || response.data.emailSearch.email_search_result_category == 'found_email_domain_of_dispatcher_service' || response.data.emailSearch.email_search_result_category == 'found_email_associated_with_one_carrier' || response.data.emailSearch.email_search_result_category == 'found_email_domain_associated_with_one_carrier' ||){
+      return true
     }
     if (response.status !== 200) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    return true;
+    return false;
 
   } catch (error) {
     console.error('Error calling /highway route:', error.message);
